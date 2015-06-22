@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>PongMMO-S Debug</title>
+        <script>
+        
+        var player = "";
+            
+        var ajax = function(url, data, callback) {
+            var http = new XMLHttpRequest();
+            var params = data;
+            http.open("POST", url, true);
+            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            
+            http.onreadystatechange = function() {
+                if(http.readyState == 4 && http.status == 200) {
+                    if (callback)
+                        callback(http.responseText);
+                    }
+                }
+            http.send(params);
+        }
+        
+        var joinServer = function() {
+            document.getElementById('joinButton').disabled = 'disabled'
+            var callback = function(text) {
+                data = JSON.parse(text);
+                if (data.result == "success") {
+                    player = data.player;
+                    document.getElementById("Log").innerHTML += "<br />Joined server as player "+player;
+                } else {
+                    alert("Error joining server.");
+                    console.log(text);
+                } 
+            }
+            ajax("localhost", "type=JOIN&yes=no", callback);
+        }
+        
+        var setReady = function() {
+            document.getElementById('readyButton').disabled = 'disabled'
+            var callback = function(text) {
+                data = JSON.parse(text);
+                if (data.result == "success") {
+                    if (data.ready == "TRUE") {
+                       document.getElementById("Log").innerHTML += "<br />Starting Game"; 
+                    } else {
+                        document.getElementById("Log").innerHTML += "<br />Push Check for game check"; 
+                    }
+                } else {
+                    alert("Error setting ready state.");
+                    console.log(text);
+                } 
+            }
+            ajax("localhost", "type=READY&player="+player, callback);
+        }
+        
+        var checkReady = function() {
+            var callback = function(text) {
+                data = JSON.parse(text);
+                if (data.result == "success") {
+                    if (data.ready == "TRUE") {
+                        document.getElementById("Log").innerHTML += "<br />Both players ready, starting game.";
+                    } else {
+                        document.getElementById("Log").innerHTML += "<br />Not all players ready, push check to check ready state."; 
+                    }
+                } else {
+                    alert("Error checking ready state.");
+                    console.log(text);
+                } 
+            }
+            ajax("localhost", "type=CHECK&checkType=READY", callback); 
+        }
+        
+        var reset = function() {
+            ajax("localhost", "type=RESET&yes=no", console.log);   
+        }
+        </script>
+    </head>
+    <body>
+        <h1>PongMMO-S Debug</h1>
+        <div id="Log">Log</div>
+        <button onclick="joinServer()" id="joinButton">Join Server</button>
+        <button onclick="setReady()" id="readyButton">Set Ready</button>
+        <button onclick="checkReady()" id="checkButton">Check</button>
+        <button onclick="reset()">Reset</button>
+    </body>
+</html>

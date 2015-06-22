@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/elf/Desktop/Projects/PongMMO-C/core/build/libs/core-1.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="3b1fde066fa28c33f73ca2c006e3a31a3e1012cc">
+        <dex dex="/Users/elf/Desktop/Projects/PongMMO-C/android/build/intermediates/pre-dexed/debug/core-1.0-2bd9aea40226b10b407702936e7f3ce6759ca1dc.jar" />
+    </item>
+
+</items>
