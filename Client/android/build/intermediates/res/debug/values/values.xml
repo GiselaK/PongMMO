@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/elf/Desktop/Projects/PongMMO-C/android/res/values/strings.xml -->
+    <!-- From: file:/Users/elf/Desktop/Projects/PongMMO/Client/android/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">my-gdx-game</string>
-    <!-- From: file:/Users/elf/Desktop/Projects/PongMMO-C/android/res/values/styles.xml -->
+    <!-- From: file:/Users/elf/Desktop/Projects/PongMMO/Client/android/res/values/styles.xml -->
     <eat-comment/>
     <style name="GdxTheme" parent="android:Theme">
 		<item name="android:windowBackground">@android:color/transparent</item>
