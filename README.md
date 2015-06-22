@@ -1,6 +1,9 @@
 # PongMMO
 A multiplayer pong game, for android.
 
+## Screenshot
+![screenshot](https://github.com/PongMMO/PongMMO/blob/master/screenshot.png)
+
 ## Usage
 Download the latest release as am apk from [here](https://github.com/PongMMO/PongMMO/releases), and then install and run the application.
 
