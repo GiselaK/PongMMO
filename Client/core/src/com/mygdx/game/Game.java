@@ -11,6 +11,8 @@ public class Game {
     private int counter = 0;
     private ShapeRenderer shapie;
     private Ball ball;
+    public float paddleWidth;
+    public float paddleHeight;
 
     Game(Globals globals) {
         this.globals = globals;
@@ -18,6 +20,9 @@ public class Game {
         pTwo = new Player();
         shapie = new ShapeRenderer();
         ball = new Ball(globals, this);
+        paddleHeight = globals.gameHeight/5;
+        paddleWidth = globals.gameHeight/10;
+
         resizeGame();
         resetGame();
     }
@@ -56,8 +61,8 @@ public class Game {
         shapie.setColor(1, 1, 1, 1);
         shapie.rect(ball.ballPosition.x, ball.ballPosition.y, ball.ballSize, ball.ballSize);
         //Draw Paddles
-        shapie.rect((((globals.width - globals.getWidth) / 2)) - 50, ((globals.height - globals.gameHeight) / 2) + pOne.playerPosition.y, 50, 100);
-        shapie.rect((((globals.width + globals.getWidth) / 2)), ((globals.height - globals.gameHeight) / 2)+pTwo.playerPosition.y, 50, 100);
+        shapie.rect((((globals.width - globals.getWidth) / 2)) - paddleWidth, ((globals.height - globals.gameHeight) / 2) + pOne.playerPosition.y, paddleWidth, paddleHeight);
+        shapie.rect((((globals.width + globals.getWidth) / 2)), ((globals.height - globals.gameHeight) / 2)+ pTwo.playerPosition.y, paddleWidth, paddleHeight);
         shapie.end();
 
         globals.batch.begin();
@@ -79,7 +84,10 @@ public class Game {
         boolean touchedRight = player.lastTouch > globals.height/2;
         boolean touchedLeft = player.lastTouch < globals.height/2;
         boolean paddleOffScreenRight = player.playerPosition.y < 0;
-        boolean paddleOffScreenLeft = player.playerPosition.y > globals.height-100;
+        boolean paddleOffScreenLeft = player.playerPosition.y > globals.gameHeight - paddleHeight;
+
+
+
         if ((touchedRight && !paddleOffScreenRight)){
             player.moveRight();
         }
