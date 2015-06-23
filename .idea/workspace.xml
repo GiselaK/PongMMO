@@ -1,45 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="23778968-a43b-42cf-a7bd-b81953ee5552" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/pre-dexed/debug/core-1.0-7c6d705cb390e74dde0408b40001d33780bf7edd.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/pre-dexed/debug/gdx-1.6.2-c0e571807049c4755224be5358e29d100e3938bc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/pre-dexed/debug/gdx-backend-android-1.6.2-54045b478d03b570fe00deeadadafc01c0493a56.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/pre-dexed/debug/gdx-box2d-1.6.2-d542a9800599a8d633ee25b9be7998cc9570232d.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/Ball.class" afterPath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/Ball.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/Game.class" afterPath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/Game.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/Globals$GameState.class" afterPath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/Globals$GameState.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/Globals.class" afterPath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/Globals.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/MyGdxGame$1.class" afterPath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/MyGdxGame$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/MyGdxGame.class" afterPath="$PROJECT_DIR$/Client/core/build/classes/main/com/mygdx/game/MyGdxGame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/android/build/outputs/apk/android-debug-unaligned.apk" afterPath="$PROJECT_DIR$/Client/android/build/outputs/apk/android-debug-unaligned.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/android/build/outputs/apk/android-debug.apk" afterPath="$PROJECT_DIR$/Client/android/build/outputs/apk/android-debug.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/Client/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/dex/debug/classes.dex" afterPath="$PROJECT_DIR$/Client/android/build/intermediates/dex/debug/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/core/build/libs/core-1.0.jar" afterPath="$PROJECT_DIR$/Client/core/build/libs/core-1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/Client/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/Client/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/Client/build/intermediates/gradle_project_sync_data.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/Client/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/resources/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/Client/android/build/intermediates/resources/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/resources/resources-debug.ap_" afterPath="$PROJECT_DIR$/Client/android/build/intermediates/resources/resources-debug.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/Client/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/core/src/com/mygdx/game/Ball.java" afterPath="$PROJECT_DIR$/Client/core/src/com/mygdx/game/Ball.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/core/src/com/mygdx/game/Game.java" afterPath="$PROJECT_DIR$/Client/core/src/com/mygdx/game/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/core/src/com/mygdx/game/Globals.java" afterPath="$PROJECT_DIR$/Client/core/src/com/mygdx/game/Globals.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/core/src/com/mygdx/game/MyGdxGame.java" afterPath="$PROJECT_DIR$/Client/core/src/com/mygdx/game/MyGdxGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/Client/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/.idea/gradle.xml" afterPath="$PROJECT_DIR$/Client/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/index.js" afterPath="$PROJECT_DIR$/Server/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/local.properties" afterPath="$PROJECT_DIR$/Client/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/Client/android/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="$PROJECT_DIR$/Client/android/build/intermediates/incremental/mergeAssets/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/incremental/mergeResources/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/Client/android/build/intermediates/incremental/mergeResources/androidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/incremental/mergeResources/debug/merger.xml" afterPath="$PROJECT_DIR$/Client/android/build/intermediates/incremental/mergeResources/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/.idea/misc.xml" afterPath="$PROJECT_DIR$/Client/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/android/build/intermediates/res/debug/values/values.xml" afterPath="$PROJECT_DIR$/Client/android/build/intermediates/res/debug/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/.idea/workspace.xml" afterPath="$PROJECT_DIR$/Client/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="23778968-a43b-42cf-a7bd-b81953ee5552" name="Default" comment="" />
     <ignored path="PongMMO.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,13 +26,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#832#833#0" expanded="false" />
-                <element signature="e#867#868#0" expanded="false" />
-                <element signature="e#897#898#0" expanded="false" />
-                <element signature="e#932#933#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -78,7 +34,7 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Client/core/src/com/mygdx/game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.3117871">
+            <state vertical-scroll-proportion="0.0">
               <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
               <folding />
             </state>
@@ -100,7 +56,7 @@
       <file leaf-file-name="debug.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/debug.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="5.625">
+            <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -147,10 +103,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="111" />
-    <option name="y" value="28" />
+    <option name="y" value="22" />
     <option name="width" value="1680" />
-    <option name="height" value="940" />
+    <option name="height" value="943" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -175,6 +130,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -185,7 +142,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -221,7 +177,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -329,14 +284,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="111" y="28" width="1680" height="940" extended-state="6" />
+    <frame x="0" y="22" width="1680" height="943" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3276699" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32648125" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -346,7 +301,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24969475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24969475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -370,13 +325,49 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/core/src/com/mygdx/game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/core/src/com/mygdx/game/Ball.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="8" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="8" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#832#833#0" expanded="false" />
-            <element signature="e#867#868#0" expanded="false" />
-            <element signature="e#897#898#0" expanded="false" />
-            <element signature="e#932#933#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/debug.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/core/src/com/mygdx/game/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -416,13 +407,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#832#833#0" expanded="false" />
-            <element signature="e#867#868#0" expanded="false" />
-            <element signature="e#897#898#0" expanded="false" />
-            <element signature="e#932#933#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -438,7 +423,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/debug.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.625">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -454,7 +439,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/core/src/com/mygdx/game/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3117871">
+        <state vertical-scroll-proportion="0.0">
           <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
           <folding />
         </state>

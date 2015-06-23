@@ -80,10 +80,6 @@ public class MyGdxGame extends ApplicationAdapter {
 				}
 				else {
 					text.draw("You got your ass beat", 200, 175);
-					System.out.println(globals.playerId);
-					System.out.println("^globals.playerId^");
-					System.out.println(globals.winner);
-					System.out.println("^globals.winner^");
 				}
 				globals.batch.end();
 				break;
