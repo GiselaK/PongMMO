@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 
 public class Game {
     private Globals globals;
@@ -11,12 +12,16 @@ public class Game {
     private int counter = 0;
     private ShapeRenderer shapie;
     private Ball ball;
+    public float paddleHeight;
+    public float paddleWidth;
 
     Game(Globals globals) {
         this.globals = globals;
         pOne = new Player();
         pTwo = new Player();
         shapie = new ShapeRenderer();
+        paddleHeight = globals.gameHeight/5;
+        paddleWidth = globals.gameHeight/10;
         ball = new Ball(globals, this);
         resizeGame();
         resetGame();
@@ -43,7 +48,34 @@ public class Game {
             counter = 0;
         }
     }
+    public void addScore(String player){
+        if(player=="pOne"){
+            pOne.score++;
+        }
+        else if(player=="pTwo"){
+            pTwo.score++;
+        }
+        if(pOne.score==3){
+            globals.winner = "ONE";
+            globals.gameState = Globals.GameState.GAMEOVER;
+//            gameOver("Player One");
+        }
+        else if(pTwo.score==3){
+            globals.winner = "TWO";
+            globals.gameState = Globals.GameState.GAMEOVER;
+//            gameOver("Player Two");
+        }
 
+    }
+
+    public void restartGame(String direction){
+        if(direction=="y"){
+            ball.ballVelocity.y=ball.speed;
+        }
+        else if (direction == "x") {
+            ball.ballVelocity.x=ball.speed;
+        }
+    }
     public void draw() {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -56,8 +88,8 @@ public class Game {
         shapie.setColor(1, 1, 1, 1);
         shapie.rect(ball.ballPosition.x, ball.ballPosition.y, ball.ballSize, ball.ballSize);
         //Draw Paddles
-        shapie.rect((((globals.width - globals.getWidth) / 2)) - 50, ((globals.height - globals.gameHeight) / 2) + pOne.playerPosition.y, 50, 100);
-        shapie.rect((((globals.width + globals.getWidth) / 2)), ((globals.height - globals.gameHeight) / 2)+pTwo.playerPosition.y, 50, 100);
+        shapie.rect((((globals.width - globals.getWidth) / 2)) - paddleWidth, ((globals.height - globals.gameHeight) / 2) + pOne.playerPosition.y, paddleWidth, paddleHeight);
+        shapie.rect((((globals.width + globals.getWidth) / 2)), ((globals.height - globals.gameHeight) / 2)+ pTwo.playerPosition.y, paddleWidth, paddleHeight);
         shapie.end();
 
         globals.batch.begin();
@@ -80,7 +112,7 @@ public class Game {
         boolean touchedLeft = player.lastTouch < globals.height/2;
         boolean paddleOffScreenRight = player.playerPosition.y < 0;
         boolean paddleOffScreenLeft = player.playerPosition.y > globals.height-100;
-        if ((touchedRight && !paddleOffScreenRight)){
+        if ((touchedRight && !  paddleOffScreenRight)){
             player.moveRight();
         }
         else if (touchedLeft && !paddleOffScreenLeft) {

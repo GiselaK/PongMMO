@@ -67,14 +67,20 @@ public class Ball {
     public void updateGame() {
         moveBall();
     }
+    public void setBallPos() {
+        ballPosition.y = ((height - globals.gameHeight)/2) + (globals.gameHeight  / 2);
+        ballPosition.x = ((width - globals.getWidth)/2) + (globals.getWidth  / 2);
+    }
+    public void setBallVel(){
+        ballVelocity.x *= -1;
+        ballVelocity.y *= -1;
+    }
     public void moveBall() {
         if (Math.abs(ballPosition.y-game.pTwo.playerPosition.y)<100 && ballPosition.x > ((globals.width - globals.getWidth) / 2)+globals.getWidth){
-            ballVelocity.x *= -1;
-            ballVelocity.y *= -1;
+            setBallVel();
         }
         if (Math.abs(ballPosition.y-game.pOne.playerPosition.y)<100 && ballPosition.x < ((globals.width - globals.getWidth) / 2)){
-            ballVelocity.x *= -1;
-            ballVelocity.y *= -1;
+            setBallVel();
         }
         float deltaTime = Gdx.graphics.getDeltaTime();
         if (ballPosition.y <= ((height - globals.gameHeight) /2) && ballVelocity.y < 0 ) {
@@ -84,15 +90,18 @@ public class Ball {
             ballVelocity.y *= -1;
 
         } else if (ballPosition.x <= ((width - globals.getWidth)/2) - (4*ballSize)  && ballVelocity.x < 0) {
-            ballPosition.y = ((height - globals.gameHeight)/2) + (globals.gameHeight  / 2);
-            ballPosition.x = ((width - globals.getWidth)/2) + (globals.getWidth  / 2);
-            ballVelocity.x = speed;
-            game.pOne.score++;
+            setBallPos();
+            game.addScore("pTwo");
+            game.restartGame("x");
+//            ballVelocity.x = speed;
+//            ++;
         }else if (ballPosition.x + ballSize >= (((width - globals.getWidth)/2) + globals.getWidth+ 4*ballSize) && ballVelocity.x > 0 ) {
-            game.pTwo.score++;
-            ballPosition.y = ((height - globals.gameHeight)/2) + (globals.gameHeight  / 2);
-            ballPosition.x = ((width - globals.getWidth)/2) + (globals.getWidth  / 2);
-            ballVelocity.y = speed;
+            setBallPos();
+            game.addScore("pOne");
+            game.restartGame("y");
+//            game.pTwo.score++;
+
+//            ballVelocity.y = speed;
 
         }
         ballPosition.y += ballVelocity.y*deltaTime;

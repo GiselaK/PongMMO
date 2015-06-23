@@ -8,7 +8,7 @@ public class Globals {
     public int width;
     public int height;
     public enum GameState {
-        WAITING, STARTED, ERROR
+        WAITING, STARTED, GAMEOVER, ERROR
     }
     public GameState gameState;
     public String playerId;
@@ -17,6 +17,7 @@ public class Globals {
     public String error;
     public int gameHeight;
     public int getWidth;
+    public String winner;
 
     Globals() {
         this.width = Gdx.graphics.getWidth();
@@ -25,5 +26,6 @@ public class Globals {
         this.tools = new Tools(this);
         this.gameHeight = 500;
         this.getWidth = 600;
+        this.winner = "Winner";
     }
 }

@@ -2,32 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/elf/Desktop/Projects/PongMMO/Client/core/build/libs/core-1.0.jar"
+        jar="/Users/giselakottmeier/Desktop/projects/PongMMO/Client/core/build/libs/core-1.0.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="28eb564c9ee86466ea6b69a0c26dd284daa57407">
-        <dex dex="/Users/elf/Desktop/Projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/core-1.0-7c6d705cb390e74dde0408b40001d33780bf7edd.jar" />
-    </item>
-    <item
-        jar="/Users/elf/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-box2d/1.6.2/b4406b97b35d7caf7111400ceebc8b92c8998168/gdx-box2d-1.6.2.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="b4406b97b35d7caf7111400ceebc8b92c8998168">
-        <dex dex="/Users/elf/Desktop/Projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/gdx-box2d-1.6.2-d542a9800599a8d633ee25b9be7998cc9570232d.jar" />
-    </item>
-    <item
-        jar="/Users/elf/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.6.2/b70b1eb9da71076aa47ac8932b42358b00db84a0/gdx-1.6.2.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="b70b1eb9da71076aa47ac8932b42358b00db84a0">
-        <dex dex="/Users/elf/Desktop/Projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/gdx-1.6.2-c0e571807049c4755224be5358e29d100e3938bc.jar" />
-    </item>
-    <item
-        jar="/Users/elf/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.6.2/14e97f2799e74334d15c59ae90c6247f36b90429/gdx-backend-android-1.6.2.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="14e97f2799e74334d15c59ae90c6247f36b90429">
-        <dex dex="/Users/elf/Desktop/Projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/gdx-backend-android-1.6.2-54045b478d03b570fe00deeadadafc01c0493a56.jar" />
+        sha1="c342e321ca685f1d8f254fe09c71443ee67d1729">
+        <dex dex="/Users/giselakottmeier/Desktop/projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/core-1.0-fa1439c7b5cb7bca52e90334466729d2c505fd9e.jar" />
     </item>
 
 </items>

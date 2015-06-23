@@ -8,12 +8,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends ApplicationAdapter {
 	Network network;
-	private Player pOne;
-	private Player pTwo;
 	public static Text text;
 	private Globals globals;
 	private Setup setup;
 	private Waiting waiting;
+
 	private Game game;
 
 	public void setNetwork(Network network) {
@@ -29,6 +28,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		game = new Game(globals);
 		globals.network = network;
 		text = new Text(globals);
+//		winner = new String(globals);
+
 
 		//Connect to Server
 		String result = setup.connect();
@@ -70,6 +71,22 @@ public class MyGdxGame extends ApplicationAdapter {
 				game.draw();
 				break;
 
+			case GAMEOVER:
+				Gdx.gl.glClearColor(1, 0, 0, 1);
+				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+				globals.batch.begin();
+				if(globals.playerId.equals(globals.winner)){
+					text.draw(" You beat their ass", 200, 175);
+				}
+				else {
+					text.draw("You got your ass beat", 200, 175);
+					System.out.println(globals.playerId);
+					System.out.println("^globals.playerId^");
+					System.out.println(globals.winner);
+					System.out.println("^globals.winner^");
+				}
+				globals.batch.end();
+				break;
 			//There was an error
 			case ERROR:
 				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
