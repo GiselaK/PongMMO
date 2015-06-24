@@ -48,26 +48,6 @@ public class Game {
             }
             counter = 0;
         }
-//        if (ball.ballBounds.overlaps(pOne.playerBounds)){
-//            ball.ballVelocity.x *= -1;
-//            ball.ballVelocity.y *= -1;
-//            try {
-//                Thread.sleep(1000);                 //1000 milliseconds is one second.
-//            } catch(InterruptedException ex) {
-//                Thread.currentThread().interrupt();
-//            }
-//
-//
-//        }
-//        if (ball.ballBounds.overlaps(pTwo.playerBounds)){
-//            ball.ballVelocity.x *= -1;
-//            ball.ballVelocity.y *= -1;
-//            try {
-//                Thread.sleep(1000);                 //1000 milliseconds is one second.
-//            } catch(InterruptedException ex) {
-//                Thread.currentThread().interrupt();
-//            }
-//        }
     }
     public void addScore(String player){
         if(player=="pOne"){

@@ -52,8 +52,8 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.5525115">
-              <caret line="153" column="45" selection-start-line="153" selection-start-column="45" selection-end-line="153" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.20091324">
+              <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1947,8 +1947,8 @@
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java" />
         <option value="$PROJECT_DIR$/android/src/com/mygdx/game/android/AndroidNetwork.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/Ball.java" />
-        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/Game.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/Setup.java" />
+        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/Game.java" />
       </list>
     </option>
   </component>
@@ -2720,8 +2720,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.5525115">
-          <caret line="153" column="45" selection-start-line="153" selection-start-column="45" selection-end-line="153" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.20091324">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
