@@ -30,7 +30,6 @@ public class MyGdxGame extends ApplicationAdapter {
 		text = new Text(globals);
 //		winner = new String(globals);
 
-
 		//Connect to Server
 		String result = setup.connect();
 		System.out.println(result);
@@ -76,11 +75,15 @@ public class MyGdxGame extends ApplicationAdapter {
 				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 				globals.batch.begin();
 				if(globals.playerId.equals(globals.winner)){
-					text.draw(" You beat their ass", 200, 175);
+					text.draw("You beat their ass", 200, 175);
 				}
 				else {
 					text.draw("You got your ass beat", 200, 175);
 				}
+				// Set it to play again in future. Need multiple games first.
+//				if(Gdx.input.justTouched()){
+//					globals.gameState= Globals.GameState.WAITING;
+//				}
 				globals.batch.end();
 				break;
 			//There was an error

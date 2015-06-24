@@ -5,7 +5,7 @@
         jar="/Users/giselakottmeier/Desktop/projects/PongMMO/Client/core/build/libs/core-1.0.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="c342e321ca685f1d8f254fe09c71443ee67d1729">
+        sha1="e392132c9a7c9bbfd5876ad043b3efee15d7cdcc">
         <dex dex="/Users/giselakottmeier/Desktop/projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/core-1.0-fa1439c7b5cb7bca52e90334466729d2c505fd9e.jar" />
     </item>
 

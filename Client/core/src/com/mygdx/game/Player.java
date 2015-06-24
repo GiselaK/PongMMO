@@ -3,7 +3,9 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+
 
 public class Player {
     SpriteBatch batch;
@@ -14,6 +16,8 @@ public class Player {
     int lastTouch;
     static boolean left = true;
     public int score;
+    public Rectangle playerBounds;
+
 
     Player () {
         batch = new SpriteBatch();
@@ -22,7 +26,8 @@ public class Player {
         height = Gdx.graphics.getHeight();
         width = Gdx.graphics.getWidth();
         playerPosition.y = (height/2)-(100/2);
-        lastTouch=height/2;
+        lastTouch = height/2;
+        playerBounds = new Rectangle(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
         if (left) {
             left = false;
         } else {
@@ -33,10 +38,12 @@ public class Player {
 
     public void moveLeft(){
         playerPosition.y+=2;
+        playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
     }
 
     public void moveRight(){
         playerPosition.y-=2;
+        playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
     }
 
 }

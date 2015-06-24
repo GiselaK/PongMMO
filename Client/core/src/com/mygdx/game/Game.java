@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import java.util.concurrent.*;
 
 public class Game {
     private Globals globals;
@@ -25,6 +26,7 @@ public class Game {
         ball = new Ball(globals, this);
         resizeGame();
         resetGame();
+//        (new Thread(new HelloThread())).start();
     }
 
     public void update() {
@@ -47,6 +49,26 @@ public class Game {
             }
             counter = 0;
         }
+//        if (ball.ballBounds.overlaps(pOne.playerBounds)){
+//            ball.ballVelocity.x *= -1;
+//            ball.ballVelocity.y *= -1;
+//            try {
+//                Thread.sleep(1000);                 //1000 milliseconds is one second.
+//            } catch(InterruptedException ex) {
+//                Thread.currentThread().interrupt();
+//            }
+//
+//
+//        }
+//        if (ball.ballBounds.overlaps(pTwo.playerBounds)){
+//            ball.ballVelocity.x *= -1;
+//            ball.ballVelocity.y *= -1;
+//            try {
+//                Thread.sleep(1000);                 //1000 milliseconds is one second.
+//            } catch(InterruptedException ex) {
+//                Thread.currentThread().interrupt();
+//            }
+//        }
     }
     public void addScore(String player){
         if(player=="pOne"){
@@ -55,12 +77,12 @@ public class Game {
         else if(player=="pTwo"){
             pTwo.score++;
         }
-        if(pOne.score==3){
+        if(pOne.score==47){
             globals.winner = "ONE";
             globals.gameState = Globals.GameState.GAMEOVER;
 //            gameOver("Player One");
         }
-        else if(pTwo.score==3){
+        else if(pTwo.score==47){
             globals.winner = "TWO";
             globals.gameState = Globals.GameState.GAMEOVER;
 //            gameOver("Player Two");
@@ -70,10 +92,10 @@ public class Game {
 
     public void restartGame(String direction){
         if(direction=="y"){
-            ball.ballVelocity.y=ball.speed;
+            ball.ballVelocity.x*=-1;
         }
         else if (direction == "x") {
-            ball.ballVelocity.x=ball.speed;
+            ball.ballVelocity.x*=-1;
         }
     }
     public void draw() {
@@ -111,7 +133,7 @@ public class Game {
         boolean touchedRight = player.lastTouch > globals.height/2;
         boolean touchedLeft = player.lastTouch < globals.height/2;
         boolean paddleOffScreenRight = player.playerPosition.y < 0;
-        boolean paddleOffScreenLeft = player.playerPosition.y > globals.height-100;
+        boolean paddleOffScreenLeft = player.playerPosition.y > globals.gameHeight - paddleHeight;
         if ((touchedRight && !  paddleOffScreenRight)){
             player.moveRight();
         }
@@ -130,4 +152,22 @@ public class Game {
         ball.resetGame();
         ball.setPosition(ball.rectanle.getWidth(), ball.rectanle.getHeight());
     }
+
+//    private class HelloThread implements Runnable {
+//        public void run() {
+//            if(globals.playerId!=null){
+//                if (globals.playerId.equals("ONE")){
+//                    globals.tools.pushNetRequest("checkPlayer", "ONE", "type", "MOVE", "y", pOne.playerPosition.y + "");
+//                    String result = globals.tools.pushNetRequest("type", "CHECK", "checkType", "PADDLE", "checkPlayer", "TWO");
+//                    pTwo.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "paddleY"));
+//                } else {
+//                    globals.tools.pushNetRequest("checkPlayer", "TWO", "type", "MOVE", "y", pTwo.playerPosition.y + "");
+//                    String result = globals.tools.pushNetRequest("type", "CHECK", "checkType", "PADDLE", "checkPlayer", "ONE");
+//                    pOne.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "paddleY"));
+//                }
+//
+//            }
+//            System.out.println("gr8 d8 m8, i r8 8/8, no h8");
+//        }
+//    }
 }

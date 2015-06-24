@@ -36,7 +36,7 @@ public class AndroidNetwork implements Network {
     @Override
     public String sendRequest(String a, String b, String c, String d, String e, String f) {
         HttpClient httpClient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://pong-mmo.herokuapp.com/");
+        HttpPost httpPost = new HttpPost("http://7231721b.ngrok.io");
 
 
 
