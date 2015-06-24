@@ -102,13 +102,13 @@ public class Ball {
         } else if (ballPosition.x <= ((width - globals.getWidth)/2) - (4*ballSize)  && ballVelocity.x < 0) {
             setBallPos();
             game.addScore("pTwo");
-            game.restartGame("x");
+            ballVelocity.x*=-1;
 //            ballVelocity.x = speed;
 //            ++;
         }else if (ballPosition.x + ballSize >= (((width - globals.getWidth)/2) + globals.getWidth+ 4*ballSize) && ballVelocity.x > 0 ) {
             setBallPos();
             game.addScore("pOne");
-            game.restartGame("y");
+            ballVelocity.x*=-1;
 //            game.pTwo.score++;
 
 //            ballVelocity.y = speed;

@@ -3,7 +3,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 import java.util.concurrent.*;
 
 public class Game {
@@ -90,14 +89,6 @@ public class Game {
 
     }
 
-    public void restartGame(String direction){
-        if(direction=="y"){
-            ball.ballVelocity.x*=-1;
-        }
-        else if (direction == "x") {
-            ball.ballVelocity.x*=-1;
-        }
-    }
     public void draw() {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -134,6 +125,7 @@ public class Game {
         boolean touchedLeft = player.lastTouch < globals.height/2;
         boolean paddleOffScreenRight = player.playerPosition.y < 0;
         boolean paddleOffScreenLeft = player.playerPosition.y > globals.gameHeight - paddleHeight;
+
         if ((touchedRight && !  paddleOffScreenRight)){
             player.moveRight();
         }
