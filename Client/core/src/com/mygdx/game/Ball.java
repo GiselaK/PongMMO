@@ -27,6 +27,7 @@ public class Ball {
     private Globals globals;
     private Game game;
 
+
     Ball (Globals globals, Game game) {
         batch = new SpriteBatch();
         ball = new Texture(Gdx.files.internal("ball.png"));
@@ -38,7 +39,6 @@ public class Ball {
         ballVelocity.y = speed;
         ballVelocity.x = speed;
         rectanle = new Texture(Gdx.files.internal("rectangle.jpeg"));
-        ballBounds = new Rectangle();
         rectangle = new Rectangle();
 
         this.game = game;
@@ -46,6 +46,7 @@ public class Ball {
 
         resize();
         resetGame();
+        ballBounds = new Rectangle(ballPosition.x, ballPosition.y, ball.getWidth(), ball.getHeight());
 
     }
     public void resizeGame() {
@@ -72,15 +73,26 @@ public class Ball {
     }
     public void moveBall() {
         float pTwoPaddleDistance = ballPosition.y-game.pTwo.playerPosition.y;
-        float pOnePaddleDistance = Math.abs(ballPosition.y-game.pOne.playerPosition.y);
-        if ( ballPosition.y > game.pTwo.playerPosition.y ||  ballPosition.y < game.pTwo.playerPosition.y + game.paddleHeight && ballPosition.x >= ((globals.width - globals.getWidth) / 2) + globals.getWidth - 456  ){
+        float pOnePaddleDistance = Math.abs(ballPosition.y - game.pOne.playerPosition.y);
+
+        if (ballPosition.y  > game.pOne.playerPosition.y && ballPosition.y < game.pOne.playerPosition.y + game.paddleHeight && ballPosition.x <= ((globals.width - globals.getWidth) / 2) && ballPosition.x >= ((globals.width - globals.getWidth) / 2)  - game.paddleWidth && ballVelocity.x < 0 && ballVelocity.y > 0){
             ballVelocity.x *= -1;
-            ballVelocity.y *= -1;
+            ballVelocity.y *= 1;
         }
-        if (ballPosition.y > game.pTwo.playerPosition.y || ballPosition.y < game.pTwo.playerPosition.y + game.paddleHeight && ballPosition.x <= ((globals.width - globals.getWidth) / 2)){
+
+        if (ballPosition.y  > game.pOne.playerPosition.y && ballPosition.y < game.pOne.playerPosition.y + game.paddleHeight && ballPosition.x <= ((globals.width - globals.getWidth) / 2) && ballPosition.x >= ((globals.width - globals.getWidth) / 2)  - game.paddleWidth && ballVelocity.x < 0 && ballVelocity.y < 0){
             ballVelocity.x *= -1;
-            ballVelocity.y *= -1;
+            ballVelocity.y *= 1;
         }
+        if ((ballPosition.y + ballSize > game.pTwo.playerPosition.y) && ( ballPosition.y < game.pTwo.playerPosition.y + game.paddleHeight ) &&  ballPosition.x + ballSize >= ((globals.width - globals.getWidth) / 2) + globals.getWidth && ballPosition.x  + ballSize<= ((globals.width - globals.getWidth) / 2) + globals.getWidth + game.paddleWidth && ballVelocity.x > 0 && ballVelocity.y < 0 ) {
+            ballVelocity.x *= -1;
+            ballVelocity.y *= 1;
+        }
+        if ((ballPosition.y + ballSize > game.pTwo.playerPosition.y) && ( ballPosition.y < game.pTwo.playerPosition.y + game.paddleHeight ) &&  ballPosition.x + ballSize >= ((globals.width - globals.getWidth) / 2) + globals.getWidth && ballPosition.x  + ballSize<= ((globals.width - globals.getWidth) / 2) + globals.getWidth + game.paddleWidth && ballVelocity.x > 0 && ballVelocity.y > 0 ) {
+            ballVelocity.x *= -1;
+            ballVelocity.y *= 1;
+        }
+
         float deltaTime = Gdx.graphics.getDeltaTime();
         if (ballPosition.y <= ((height - globals.gameHeight) /2) && ballVelocity.y < 0 ) {
             ballVelocity.y *= -1;
@@ -91,17 +103,18 @@ public class Ball {
         }else if (ballPosition.x <= ((width - globals.getWidth)/2) - (4*ballSize)  && ballVelocity.x < 0) {
             ballPosition.y = ((height - globals.gameHeight)/2) + (globals.gameHeight  / 2);
             ballPosition.x = ((width - globals.getWidth)/2) + (globals.getWidth  / 2);
-            ballVelocity.x = speed;
+            ballVelocity.x *= -1;
             game.pOne.score++;
         }else if (ballPosition.x + ballSize >= (((width - globals.getWidth)/2) + globals.getWidth+ 4*ballSize) && ballVelocity.x > 0 ) {
             game.pTwo.score++;
             ballPosition.y = ((height - globals.gameHeight)/2) + (globals.gameHeight  / 2);
             ballPosition.x = ((width - globals.getWidth)/2) + (globals.getWidth  / 2);
-            ballVelocity.y = speed;
+            ballVelocity.x *= -1;
 
         }
         ballPosition.y += ballVelocity.y*deltaTime;
         ballPosition.x += ballVelocity.x*deltaTime;
+        ballBounds.set(ballPosition.x, ballPosition.y, ball.getWidth(), ball.getHeight());
     }
 
     public void setPosition(float x, float y){

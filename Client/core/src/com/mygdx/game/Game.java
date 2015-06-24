@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import java.util.concurrent.TimeUnit;
+
 public class Game {
     private Globals globals;
     public Player pOne;
@@ -47,6 +49,18 @@ public class Game {
             }
             counter = 0;
         }
+        /*if (ball.ballBounds.overlaps(pOne.playerBounds)){
+            //long time = 39L;
+            ball.ballVelocity.x *= -1;
+            ball.ballVelocity.y *= -1;
+            //TimeUnit.SECONDS.sleep(39L);
+            //Thread.sleep(1000);
+
+        }
+        if (ball.ballBounds.overlaps(pTwo.playerBounds)){
+            ball.ballVelocity.x *= -1;
+            ball.ballVelocity.y *= -1;
+        }*/
     }
 
     public void draw() {
