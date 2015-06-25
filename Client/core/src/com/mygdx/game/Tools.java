@@ -10,8 +10,8 @@ public class Tools {
         return key1+"="+value1+"&"+key2+"="+value2;
     }
 
-    public String pushNetRequest(String a, String b, String c, String d, String e, String f, String h, String i) {
-        String result =  globals.network.sendRequest(a, b, c, d, e, f, h, i);
+    public String pushNetRequest(String[] keys, String[] value) {
+        String result =  globals.network.sendRequest(keys, value);
         if (result == null) {
             globals.error = "Connection Failed";
             globals.gameState = Globals.GameState.ERROR;

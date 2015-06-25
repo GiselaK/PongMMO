@@ -116,10 +116,11 @@ public class Game {
             //System.out.println(globals.playerId);
             if(globals.playerId!=null){
                 if (globals.playerId.equals("ONE")){
-                    String result = globals.tools.pushNetRequest("checkPlayer", "ONE", "type", "MOVE", "y", pOne.playerPosition.y + "", "a", "b");
+
+                    String result = globals.tools.pushNetRequest(new String[]{"checkPlayer", "type", "y"}, new String[]{"ONE", "MOVE", pOne.playerPosition.y + ""});
                     pTwo.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
                 } else {
-                    String result = globals.tools.pushNetRequest("checkPlayer", "TWO", "type", "MOVE", "y", pTwo.playerPosition.y + "", "a", "b");
+                    String result = globals.tools.pushNetRequest(new String[]{"checkPlayer", "type", "y"}, new String[]{"TWO", "MOVE", pTwo.playerPosition.y + ""});
                     pOne.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
                 }
 
@@ -134,12 +135,15 @@ public class Game {
                 //System.out.println(globals.playerId);
                 if(globals.playerId!=null){
                     if (globals.playerId.equals("ONE")){
-                        globals.tools.pushNetRequest("type", "BALL", "meth", "SET", "y", ball.ballPosition.y+"", "x", ball.ballPosition.x+"");
+                        globals.tools.pushNetRequest(new String[]{"type", "meth", "y", "x", "velocityX", "velocityY" }, new String []{"BALL", "SET", ball.ballPosition.y+"", ball.ballPosition.x+"", ball.ballVelocity.x+"", ball.ballVelocity.y+""});
+
                     } else {
-                        String result = globals.tools.pushNetRequest("type", "BALL", "meth", "GET", "y", ball.ballPosition.y + "", "x", ball.ballPosition.x + "");
+                        String result = globals.tools.pushNetRequest(new String[]{"type", "meth", "y", "x", "velocityX", "velocityY" }, new String []{"BALL", "GET", ball.ballPosition.y+"", ball.ballPosition.x+"", ball.ballVelocity.x+"", ball.ballVelocity.y+""});
                         System.out.println(result);
                         ball.ballPosition.x = Float.parseFloat(globals.network.processJson(result, "x"));
                         ball.ballPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
+                        ball.ballVelocity.x = Float.parseFloat(globals.network.processJson(result, "velocityX"));
+                        ball.ballVelocity.y = Float.parseFloat(globals.network.processJson(result, "velocityY"));
                     }
 
                 }

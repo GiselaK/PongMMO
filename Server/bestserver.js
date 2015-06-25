@@ -28,10 +28,14 @@ var Player = function() {
 var Game = new function() {
   this.players = [];
   this.p1 = [new Point(0, 0)]
-  this.ball = [new Point(0, 0)];
+  this.ball = [new Ball(0, 0, 0, 0)];
   this.p2 = [new Point(0, 0)];
 }
 
+var Ball = function(x, y, vx, vy) {
+  this.pos = new Point(x, y);
+  this.velocity = new Point(vx, vy);
+}
 //Handler for HTTP Requests
 var httpHandler = function(req, res) {
   var body = "";
@@ -78,6 +82,12 @@ var handleRequest = function(jsonData) {
         returnData = {status:200, data:JSON.stringify({y: Game.p1[Game.p1.length-1].y, by: Game.ball[Game.ball.length-1].y, bx:  Game.ball[Game.ball.length-1].x})};
       }
       break;
+    case "BALL":
+      if (data.meth == "SET") {
+        Game.ball.push(new Ball(data.x, data.y, data.velocityX, data.velocityY));
+      } else if (data.meth == "GET") {
+        returnData = {status: 200, data:JSON.stringify({x: Game.ball[Game.ball.length-1].pos.x, y: Game.ball[Game.ball.length-1].pos.y, vx: Game.ball[Game.ball.length-1].velocity.vx), vy: Game.ball[Game.ball.length-1].velocity.vy, setTime: Game.ball[Game.ball.length-1].pos.time}
+      }
     default:
       returnData = {status:200, data:"Request Failed"};
   }
