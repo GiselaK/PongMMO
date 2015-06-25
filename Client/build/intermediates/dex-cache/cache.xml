@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/giselakottmeier/Desktop/projects/PongMMO/Client/core/build/libs/core-1.0.jar"
+        jar="/Users/elf/Desktop/Projects/PongMMO/Client/core/build/libs/core-1.0.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="e392132c9a7c9bbfd5876ad043b3efee15d7cdcc">
-        <dex dex="/Users/giselakottmeier/Desktop/projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/core-1.0-fa1439c7b5cb7bca52e90334466729d2c505fd9e.jar" />
+        sha1="de0119cbd7b232354621d3c3d26d6037338aebbd">
+        <dex dex="/Users/elf/Desktop/Projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/core-1.0-7c6d705cb390e74dde0408b40001d33780bf7edd.jar" />
     </item>
 
 </items>

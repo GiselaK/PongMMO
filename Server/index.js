@@ -39,7 +39,7 @@ var processer = function(data) {
                     console.log("Player one joined");
                     game.players++;
                     return JSON.stringify({result: "success", method: "JOIN", player: "ONE"});
-                    break;,
+                    break;
                 case 1:
                     console.log("Player two joined");
                     game.players++;
@@ -137,4 +137,4 @@ var server = http.createServer(function(req, res) {
             }
         }); 
     }
-}).listen(process.env.PORT || 8080);
+}).listen(process.env.PORT || 8000);
