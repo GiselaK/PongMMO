@@ -18,7 +18,7 @@ public class Waiting {
     public void update() {
         if (Gdx.input.justTouched()) {
             if (!this.ready) {
-                String response = globals.tools.pushNetRequest("type", "READY", "player", globals.playerId, "Broken", "Not yes");
+                String response = globals.tools.pushNetRequest("type", "READY", "player", globals.playerId, "Broken", "Not yes", "a", "b");
 
                 if (globals.network.processJson(response, "result").equals("failure")) {
                     globals.gameState = Globals.GameState.ERROR;
@@ -33,10 +33,7 @@ public class Waiting {
             }
         }
         if (sentReady) {
-            counter++;
-            if (counter == 60) {
-                counter = 0;
-                String response = globals.tools.pushNetRequest("type", "CHECK", "checkType", "READY", "This", "That");
+                String response = globals.tools.pushNetRequest("type", "CHECK", "checkType", "READY", "This", "That", "a", "b");
                 if (globals.network.processJson(response, "result").equals("failure")) {
                     globals.gameState = Globals.GameState.ERROR;
                     globals.error = "Check ready request failed";
@@ -45,7 +42,6 @@ public class Waiting {
                         this.ready = true;
                     }
                 }
-            }
         }
     }
 

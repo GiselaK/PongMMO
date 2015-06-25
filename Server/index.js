@@ -6,6 +6,7 @@ var debugPage = fs.readFileSync("debug.html");
 var parsePostData = function(data) {
     data = data.split("&");
     returnd = {};
+    console.log(data);
     for (i = 0; i < data.length; i++) {
         data[i] = data[i].split("=");
         returnd[data[i][0]] = data[i][1];
@@ -29,6 +30,7 @@ var Game = function() {
     this.p2 = new Player();
 }
 
+var ball = new Point();
 var game = new Game();
 
 var processer = function(data) {
@@ -49,7 +51,7 @@ var processer = function(data) {
                     console.log("Third player join attempt");
                     return JSON.stringify({result: "failure", method: "JOIN", issue: "FULL"});
                     break;
-                default: 
+                default:
                     console.log("Error: JOIN request defaulted");
                     return JSON.stringify({result: "error", method: "JOIN", issue: "SERVER"});
                     break;
@@ -64,7 +66,7 @@ var processer = function(data) {
             } else {
                 console.log("ERROR: READY request invalid user id")
             }
-            
+
             if (game.p1.ready && game.p2.ready) {
                 console.log("Both players ready");
                 return JSON.stringify({result: "success", method: "READY", ready: "TRUE"});
@@ -101,17 +103,27 @@ var processer = function(data) {
             if (data.checkPlayer == "ONE") {
                 game.p1.paddle.x = data.x;
                 game.p1.paddle.y = data.y;
-                console.log("Player ONE paddle set to "+ data.x+", "+data.y);
                 return JSON.stringify({result: "success", method: "MOVE", player: "ONE", y: game.p2.paddle.y});
             } else if (data.checkPlayer == "TWO") {
                 game.p2.paddle.x = data.x;
                 game.p2.paddle.y = data.y;
-                console.log("Player TWO paddle set to "+ game.p2.paddle.x+", "+game.p2.paddle.y);
                 return JSON.stringify({result: "success", method: "MOVE", player: "TWO", y: game.p1.paddle.y});
             } else {
                 console.log("Error: MOVE request with invalid player.")
                 return JSON.stringify({result: "failure", method: "MOVE", player: data.player});
             }
+            break;
+          case "BALL":
+            if (data.meth=="GET") {
+              console.log(ball.x);
+              return JSON.stringify({"y":ball.y, "x":ball.x});
+            } else if (data.meth=="SET") {
+              ball.x = data.x;
+              console.log(data.x)
+              ball.y = data.y
+              return JSON.stringify({result: "success"})
+            }
+            break;
         case "RESET":
             game = new Game();
             break;
@@ -131,10 +143,10 @@ var server = http.createServer(function(req, res) {
             res.writeHead(200);
             data = parsePostData(body);
             if (JSON.stringify(data) == "{}") {
-                res.end("No Data"); 
+                res.end("No Data");
             } else {
                 res.end(processer(data));
             }
-        }); 
+        });
     }
 }).listen(process.env.PORT || 8000);

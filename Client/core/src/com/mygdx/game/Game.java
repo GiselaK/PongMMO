@@ -26,6 +26,7 @@ public class Game {
         resizeGame();
         resetGame();
         (new Thread(new HelloThread())).start();
+        (new Thread(new NopeThread())).start();
     }
 
     public void update() {
@@ -111,19 +112,38 @@ public class Game {
 
     private class HelloThread implements Runnable {
         public void run() {
+            while(true) {
+            //System.out.println(globals.playerId);
             if(globals.playerId!=null){
                 if (globals.playerId.equals("ONE")){
-                    globals.tools.pushNetRequest("checkPlayer", "ONE", "type", "MOVE", "y", pOne.playerPosition.y + "");
-                    String result = globals.tools.pushNetRequest("type", "CHECK", "checkType", "PADDLE", "checkPlayer", "TWO");
-                    pTwo.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "paddleY"));
+                    String result = globals.tools.pushNetRequest("checkPlayer", "ONE", "type", "MOVE", "y", pOne.playerPosition.y + "", "a", "b");
+                    pTwo.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
                 } else {
-                    globals.tools.pushNetRequest("checkPlayer", "TWO", "type", "MOVE", "y", pTwo.playerPosition.y + "");
-                    String result = globals.tools.pushNetRequest("type", "CHECK", "checkType", "PADDLE", "checkPlayer", "ONE");
-                    pOne.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "paddleY"));
+                    String result = globals.tools.pushNetRequest("checkPlayer", "TWO", "type", "MOVE", "y", pTwo.playerPosition.y + "", "a", "b");
+                    pOne.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
                 }
 
             }
-            System.out.println("gr8 d8 m8, i r8 8/8, no h8");
-        }
+            //System.out.println("gr8 d8 m8, i r8 8/8, no h8");
+        }}
+    }
+
+    private class NopeThread implements Runnable {
+        public void run() {
+            while(true) {
+                //System.out.println(globals.playerId);
+                if(globals.playerId!=null){
+                    if (globals.playerId.equals("ONE")){
+                        globals.tools.pushNetRequest("type", "BALL", "meth", "SET", "y", ball.ballPosition.y+"", "x", ball.ballPosition.x+"");
+                    } else {
+                        String result = globals.tools.pushNetRequest("type", "BALL", "meth", "GET", "y", ball.ballPosition.y + "", "x", ball.ballPosition.x + "");
+                        System.out.println(result);
+                        ball.ballPosition.x = Float.parseFloat(globals.network.processJson(result, "x"));
+                        ball.ballPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
+                    }
+
+                }
+                //System.out.println("gr8 d8 m8, i r8 8/8, no h8");
+            }}
     }
 }

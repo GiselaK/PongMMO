@@ -34,9 +34,9 @@ public class AndroidNetwork implements Network {
         }
     }
     @Override
-    public String sendRequest(String a, String b, String c, String d, String e, String f) {
+    public String sendRequest(String a, String b, String c, String d, String e, String f, String h, String i) {
         HttpClient httpClient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("https://1b6bfc5e.ngrok.io");
+        HttpPost httpPost = new HttpPost("http://1b6bfc5e.ngrok.io");
 
 
 
@@ -44,6 +44,7 @@ public class AndroidNetwork implements Network {
         nameValuePair.add(new BasicNameValuePair(a, b));
         nameValuePair.add(new BasicNameValuePair(c, d));
         nameValuePair.add(new BasicNameValuePair(e, f));
+        nameValuePair.add(new BasicNameValuePair(h, i));
 
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
