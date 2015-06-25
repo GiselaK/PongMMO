@@ -35,7 +35,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		System.out.println(result);
 		if (result == "success") {
 			//Join the Lobby
-			globals.gameState = Globals.GameState.WAITING;
+			globals.gameState = Globals.GameState.STARTED;
 			return;
 		} else {
 			//Display the Error
