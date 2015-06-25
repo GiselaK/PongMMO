@@ -117,10 +117,10 @@ public class Game {
             if(globals.playerId!=null){
                 if (globals.playerId.equals("ONE")){
 
-                    String result = globals.tools.pushNetRequest(new String[]{"checkPlayer", "type", "y"}, new String[]{"ONE", "MOVE", pOne.playerPosition.y + ""});
+                    String result = globals.tools.pushNetRequest(new String[]{"checkPlayer", "type", "y", "direction"}, new String[]{"ONE", "MOVE", pOne.playerPosition.y + "", pOne.direction});
                     pTwo.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
                 } else {
-                    String result = globals.tools.pushNetRequest(new String[]{"checkPlayer", "type", "y"}, new String[]{"TWO", "MOVE", pTwo.playerPosition.y + ""});
+                    String result = globals.tools.pushNetRequest(new String[]{"checkPlayer", "type", "y", "direction"}, new String[]{"TWO", "MOVE", pTwo.playerPosition.y + "", pTwo.direction});
                     pOne.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
                 }
 
@@ -130,6 +130,7 @@ public class Game {
     }
 
     private class NopeThread implements Runnable {
+        private long lastUpdate;
         public void run() {
             while(true) {
                 //System.out.println(globals.playerId);
@@ -140,14 +141,18 @@ public class Game {
                     } else {
                         String result = globals.tools.pushNetRequest(new String[]{"type", "meth", "y", "x", "velocityX", "velocityY" }, new String []{"BALL", "GET", ball.ballPosition.y+"", ball.ballPosition.x+"", ball.ballVelocity.x+"", ball.ballVelocity.y+""});
                         System.out.println(result);
-                        ball.ballPosition.x = Float.parseFloat(globals.network.processJson(result, "x"));
-                        ball.ballPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
-                        ball.ballVelocity.x = Float.parseFloat(globals.network.processJson(result, "velocityX"));
-                        ball.ballVelocity.y = Float.parseFloat(globals.network.processJson(result, "velocityY"));
+                        if (!(globals.network.processJson(result, "setTime") == null)) {
+                            if (Long.parseLong(globals.network.processJson(result, "setTime")) > lastUpdate) {
+                                ball.ballPosition.x = Float.parseFloat(globals.network.processJson(result, "x"));
+                                ball.ballPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
+                                ball.ballVelocity.x = Float.parseFloat(globals.network.processJson(result, "velocityX"));
+                                ball.ballVelocity.y = Float.parseFloat(globals.network.processJson(result, "velocityY"));
+                                lastUpdate = Long.parseLong(globals.network.processJson(result, "setTime"));
+                            }
+                        }
                     }
 
                 }
-                //System.out.println("gr8 d8 m8, i r8 8/8, no h8");
             }}
     }
 }

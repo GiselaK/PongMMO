@@ -27,9 +27,11 @@ var Player = function() {
 //Global Game Class
 var Game = new function() {
   this.players = [];
-  this.p1 = [new Point(0, 0)]
+  this.p1 = [new Point(0, 0)];
+  this.p1d = [new Point(0, 0)];
   this.ball = [new Ball(0, 0, 0, 0)];
   this.p2 = [new Point(0, 0)];
+  this.p2d = [new Point(0, 0)];
 }
 
 var Ball = function(x, y, vx, vy) {
@@ -75,11 +77,12 @@ var handleRequest = function(jsonData) {
     case "UPDATE":
       if (jsonData.player == 1) {
         Game.p1.push(new Point(0, jsonData.y));
-        Game.ball.push(new Point(jsonData.bx, jsonData.by))
-        returnData = {status:200, data:JSON.stringify({y: Game.p2[Game.p2.length-1]})};
+        Game.p1d.push(new Point(0, jsonData.direction));
+        returnData = {status:200, data:JSON.stringify({y: Game.p2[Game.p2.length-1].y, direction: Game.p2d[Game.p2d.length-1].y})};
       } else if (jsonData.player == 2) {
         Game.p2.push(new Point(0, jsonData.y))
-        returnData = {status:200, data:JSON.stringify({y: Game.p1[Game.p1.length-1].y, by: Game.ball[Game.ball.length-1].y, bx:  Game.ball[Game.ball.length-1].x})};
+        Game.p2d.push(new Point(0, jsonData.direction));
+        returnData = {status:200, data:JSON.stringify({y: Game.p1[Game.p1.length-1].y, by: Game.ball[Game.ball.length-1].y, bx:  Game.ball[Game.ball.length-1].x, direction: Game.p1d[Game.p1d.length-1].y})};
       }
       break;
     case "BALL":

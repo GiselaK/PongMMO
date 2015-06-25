@@ -5,29 +5,8 @@
         jar="/Users/giselakottmeier/Desktop/projects/PongMMO/Client/core/build/libs/core-1.0.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="6ee40bd2b903a5ed98f227fe6ccfa918bb22ee5f">
+        sha1="73b0ce7362c5cce7a197c548ece724afe3fb2689">
         <dex dex="/Users/giselakottmeier/Desktop/projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/core-1.0-fa1439c7b5cb7bca52e90334466729d2c505fd9e.jar" />
-    </item>
-    <item
-        jar="/Users/giselakottmeier/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-box2d/1.6.2/b4406b97b35d7caf7111400ceebc8b92c8998168/gdx-box2d-1.6.2.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="b4406b97b35d7caf7111400ceebc8b92c8998168">
-        <dex dex="/Users/giselakottmeier/Desktop/projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/gdx-box2d-1.6.2-f5701ba8ef640f062614b46c3e0acdc3a993e828.jar" />
-    </item>
-    <item
-        jar="/Users/giselakottmeier/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.6.2/b70b1eb9da71076aa47ac8932b42358b00db84a0/gdx-1.6.2.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="b70b1eb9da71076aa47ac8932b42358b00db84a0">
-        <dex dex="/Users/giselakottmeier/Desktop/projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/gdx-1.6.2-385d7b1e871c54e685c0756eb8ab9f81fb3d06a6.jar" />
-    </item>
-    <item
-        jar="/Users/giselakottmeier/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.6.2/14e97f2799e74334d15c59ae90c6247f36b90429/gdx-backend-android-1.6.2.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="14e97f2799e74334d15c59ae90c6247f36b90429">
-        <dex dex="/Users/giselakottmeier/Desktop/projects/PongMMO/Client/android/build/intermediates/pre-dexed/debug/gdx-backend-android-1.6.2-889f0ed58591ca12e63810524b6769837ae65f7d.jar" />
     </item>
 
 </items>

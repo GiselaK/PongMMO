@@ -17,6 +17,7 @@ public class Player {
     static boolean left = true;
     public int score;
     public Rectangle playerBounds;
+    public String direction;
 
 
     Player () {
@@ -27,6 +28,7 @@ public class Player {
         width = Gdx.graphics.getWidth();
         playerPosition.y = (height/2)-(100/2);
         lastTouch = height/2;
+        direction = "nowhere";
         playerBounds = new Rectangle(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
         if (left) {
             left = false;
@@ -38,11 +40,13 @@ public class Player {
 
     public void moveLeft(){
         playerPosition.y+=2;
+        direction = "left";
         playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
     }
 
     public void moveRight(){
         playerPosition.y-=2;
+        direction = "right";
         playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
     }
 
