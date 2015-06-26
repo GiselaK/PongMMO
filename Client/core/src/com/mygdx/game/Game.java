@@ -33,7 +33,7 @@ public class Game {
         playerTouch();
         ball.updateGame();
         if (globals.playerId.equals("1")) {
-            System.out.println(pTwo.direction);
+            if (pTwo.direction != null){System.out.println(pTwo.direction);}
             if(pTwo.direction == "right"){
                 pTwo.playerPosition.y-=2;
             }
@@ -41,7 +41,7 @@ public class Game {
                 pTwo.playerPosition.y+=2;
             }
         } else {
-            System.out.println(pOne.direction);
+            if (pOne.direction != null){System.out.println(pOne.direction);}
             if(pOne.direction == "right"){
                 pOne.playerPosition.y-=2;
             }
@@ -94,6 +94,7 @@ public class Game {
     }
 
     public void playerTouch(){
+        System.out.println(globals.playerId);
         if(globals.playerId.equals("1")){
             move(pOne);
         }
@@ -120,6 +121,9 @@ public class Game {
         globals.width = Gdx.graphics.getWidth();
         globals.height = Gdx.graphics.getHeight();
         ball.resizeGame();
+    }
+    public void start() {
+
     }
     private void resetGame(){
         ball.rectangle.set(globals.width/2, globals.height/2, 300, 300);

@@ -25,6 +25,11 @@ var Player = function() {
 }
 
 //Global Game Class
+var Ball = function(x, y, vx, vy) {
+  this.pos = new Point(x, y);
+  this.velocity = new Point(vx, vy);
+}
+
 var Game = new function() {
   this.players = [];
   this.p1 = [new Point(0, 0)];
@@ -34,10 +39,7 @@ var Game = new function() {
   this.p2d = [new Point(0, 0)];
 }
 
-var Ball = function(x, y, vx, vy) {
-  this.pos = new Point(x, y);
-  this.velocity = new Point(vx, vy);
-}
+
 //Handler for HTTP Requests
 var httpHandler = function(req, res) {
   var body = "";
@@ -72,25 +74,27 @@ var handleRequest = function(jsonData) {
   switch (jsonData.request) {
     case "JOIN":
       Game.players.push(new Player());
-      returnData = {status:200, data:"Joined as player "+last(Game.players).id};
+      returnData = {status:200, data:JSON.stringify({player:Game.players.length})};
       break;
     case "UPDATE":
       if (jsonData.player == 1) {
         Game.p1.push(new Point(0, jsonData.y));
         Game.p1d.push(new Point(0, jsonData.direction));
-        returnData = {status:200, data:JSON.stringify({y: Game.p2[Game.p2.length-1].y, direction: Game.p2d[Game.p2d.length-1].y})};
+        returnData = {status:200, data:JSON.stringify({y: Game.p2[Game.p2.length-1].y, direction: Game.p2d[Game.p2d.length-1].y, timeStamp: Game.p2[Game.p2.length-1].time})};
       } else if (jsonData.player == 2) {
         Game.p2.push(new Point(0, jsonData.y))
         Game.p2d.push(new Point(0, jsonData.direction));
-        returnData = {status:200, data:JSON.stringify({y: Game.p1[Game.p1.length-1].y, by: Game.ball[Game.ball.length-1].y, bx:  Game.ball[Game.ball.length-1].x, direction: Game.p1d[Game.p1d.length-1].y})};
+        returnData = {status:200, data:JSON.stringify({y: Game.p1[Game.p1.length-1].y, by: Game.ball[Game.ball.length-1].y, bx:  Game.ball[Game.ball.length-1].x, direction: Game.p1d[Game.p1d.length-1].y, timeStamp: Game.p1[Game.p1.length-1].time})};
       }
       break;
     case "BALL":
-      if (data.meth == "SET") {
-        Game.ball.push(new Ball(data.x, data.y, data.velocityX, data.velocityY));
-      } else if (data.meth == "GET") {
-        returnData = {status: 200, data:JSON.stringify({x: Game.ball[Game.ball.length-1].pos.x, y: Game.ball[Game.ball.length-1].pos.y, vx: Game.ball[Game.ball.length-1].velocity.vx), vy: Game.ball[Game.ball.length-1].velocity.vy, setTime: Game.ball[Game.ball.length-1].pos.time}
+      if (jsonData.meth == "SET") {
+        Game.ball.push(new Ball(jsonData.x, jsonData.y, jsonData.velocityX, jsonData.velocityY));
+        returnData = {status: 200, data: "meh"};
+      } else if (jsonData.meth == "GET") {
+        returnData = {status: 200, data:JSON.stringify({x: Game.ball[Game.ball.length-1].pos.x, y: Game.ball[Game.ball.length-1].pos.y, vx: Game.ball[Game.ball.length-1].velocity.x, vy: Game.ball[Game.ball.length-1].velocity.y, setTime: Game.ball[Game.ball.length-1].pos.time})};
       }
+      break;
     default:
       returnData = {status:200, data:"Request Failed"};
   }
