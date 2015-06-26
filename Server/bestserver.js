@@ -80,11 +80,12 @@ var handleRequest = function(jsonData) {
       if (jsonData.player == 1) {
         Game.p1.push(new Point(0, jsonData.y));
         Game.p1d.push(new Point(0, jsonData.direction));
+        Game.ball.push(new Ball(jsonData.bx, jsonData.by, jsonData.velocityX, jsonData.velocityY));
         returnData = {status:200, data:JSON.stringify({y: Game.p2[Game.p2.length-1].y, direction: Game.p2d[Game.p2d.length-1].y, timeStamp: Game.p2[Game.p2.length-1].time})};
       } else if (jsonData.player == 2) {
         Game.p2.push(new Point(0, jsonData.y))
         Game.p2d.push(new Point(0, jsonData.direction));
-        returnData = {status:200, data:JSON.stringify({y: Game.p1[Game.p1.length-1].y, by: Game.ball[Game.ball.length-1].y, bx:  Game.ball[Game.ball.length-1].x, direction: Game.p1d[Game.p1d.length-1].y, timeStamp: Game.p1[Game.p1.length-1].time})};
+        returnData = {status:200, data:JSON.stringify({y: Game.p1[Game.p1.length-1].y, by: Game.ball[Game.ball.length-1].y, bx:  Game.ball[Game.ball.length-1].x, direction: Game.p1d[Game.p1d.length-1].y, timeStamp: Game.p1[Game.p1.length-1].time, bx: Game.ball[Game.ball.length-1].pos.x, by: Game.ball[Game.ball.length-1].pos.y, vx: Game.ball[Game.ball.length-1].velocity.x, vy: Game.ball[Game.ball.length-1].velocity.y, setTime: Game.ball[Game.ball.length-1].pos.time})};
       }
       break;
     case "BALL":
