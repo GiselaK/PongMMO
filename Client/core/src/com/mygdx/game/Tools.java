@@ -11,7 +11,7 @@ public class Tools {
     }
 
     public String pushNetRequest(String[] keys, String[] value) {
-        String result = globals.network.sendRequest(keys, value);
+        String result =  globals.network.sendRequest(keys, value);
         if (result == null) {
             globals.error = "Connection Failed";
             globals.gameState = Globals.GameState.ERROR;

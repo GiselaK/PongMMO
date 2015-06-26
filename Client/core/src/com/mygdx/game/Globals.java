@@ -11,7 +11,7 @@ public class Globals {
         WAITING, STARTED, GAMEOVER, ERROR
     }
     public GameState gameState;
-    public String playerId = "";
+    public String playerId;
     public Tools tools;
     public Network network;
     public String error;

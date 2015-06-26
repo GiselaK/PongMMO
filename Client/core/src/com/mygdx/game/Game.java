@@ -26,27 +26,25 @@ public class Game {
         resizeGame();
         resetGame();
         (new Thread(new HelloThread())).start();
-        (new Thread(new NopeThread())).start();
+        //(new Thread(new NopeThread())).start();
     }
 
     public void update() {
         playerTouch();
         ball.updateGame();
         if (globals.playerId.equals("1")) {
-            if (pTwo.direction != null){System.out.println(pTwo.direction);}
-            if(pTwo.direction == "right"){
-                pTwo.playerPosition.y-=2;
+            if(pTwo.direction.equals("right")&&!(pTwo.playerPosition.y < 0)){
+                pTwo.moveRight();
             }
-            else if (pTwo.direction == "left"){
-                pTwo.playerPosition.y+=2;
+            else if (pTwo.direction.equals("left")&&!(pTwo.playerPosition.y > globals.gameHeight - paddleHeight)){
+                pTwo.moveLeft();
             }
         } else {
-            if (pOne.direction != null){System.out.println(pOne.direction);}
-            if(pOne.direction == "right"){
-                pOne.playerPosition.y-=2;
+            if(pOne.direction.equals("right")&&!(pOne.playerPosition.y < 0)){
+                pOne.moveRight();
             }
-            else if (pOne.direction == "left"){
-                pOne.playerPosition.y+=2;
+            else if (pOne.direction.equals("left")&&!(pOne.playerPosition.y > globals.gameHeight - paddleHeight)){
+                pOne.moveLeft();
             }
         }
 
@@ -94,7 +92,6 @@ public class Game {
     }
 
     public void playerTouch(){
-        System.out.println(globals.playerId);
         if(globals.playerId.equals("1")){
             move(pOne);
         }
@@ -122,9 +119,6 @@ public class Game {
         globals.height = Gdx.graphics.getHeight();
         ball.resizeGame();
     }
-    public void start() {
-
-    }
     private void resetGame(){
         ball.rectangle.set(globals.width/2, globals.height/2, 300, 300);
         ball.resetGame();
@@ -132,19 +126,22 @@ public class Game {
     }
 
     private class HelloThread implements Runnable {
-        private long lastUpdate;
+        private long lastUpdateBall;
+        private long lastUpdatePlayer;
         public void run() {
             while(true) {
             //System.out.println(globals.playerId);
             if(globals.playerId!=null){
+                System.out.println("Paddle Update");
                 if (globals.playerId.equals("1")){
 
-                    String result = globals.tools.pushNetRequest(new String[]{"request", "player", "y", "direction"}, new String[]{"UPDATE", "1", pOne.playerPosition.y + "", pOne.direction});
+                    String result = globals.tools.pushNetRequest(new String[]{"request", "player", "y", "direction", "by", "bx", "velocityX", "velocityY"}, new String[]{"UPDATE", "1", pOne.playerPosition.y + "", pOne.direction, ball.ballPosition.y+"", ball.ballPosition.x+"", ball.ballVelocity.x+"", ball.ballVelocity.y+""});
                     if (!(globals.network.processJson(result, "timeStamp") == null)) {
-                        if (Long.parseLong(globals.network.processJson(result, "timeStamp")) > lastUpdate + 5) {
+                        System.out.println("Player 1 Paddle Update");
+                        if (Long.parseLong(globals.network.processJson(result, "timeStamp")) > lastUpdatePlayer) {
                             pTwo.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
                             pTwo.direction = globals.network.processJson(result, "direction");
-                            lastUpdate = Long.parseLong(globals.network.processJson(result, "timeStamp"));
+                            lastUpdatePlayer = Long.parseLong(globals.network.processJson(result, "timeStamp"));
                         }
                     }
 
@@ -152,10 +149,18 @@ public class Game {
 
                     String result = globals.tools.pushNetRequest(new String[]{"request", "player", "y", "direction"}, new String[]{"UPDATE", "2", pTwo.playerPosition.y + "", pTwo.direction});
                     if (!(globals.network.processJson(result, "timeStamp") == null)) {
-                        if (Long.parseLong(globals.network.processJson(result, "timeStamp")) > lastUpdate + 5) {
+                        System.out.println("Player 2 Paddle Update");
+                        if (Long.parseLong(globals.network.processJson(result, "timeStamp")) > lastUpdatePlayer) {
                             pOne.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
                             pOne.direction = globals.network.processJson(result, "direction");
-                            lastUpdate = Long.parseLong(globals.network.processJson(result, "timeStamp"));
+                            lastUpdatePlayer = Long.parseLong(globals.network.processJson(result, "timeStamp"));
+                        }
+                        if (Long.parseLong(globals.network.processJson(result, "timeStamp")) > lastUpdateBall+5) {
+                            ball.ballPosition.x = Float.parseFloat(globals.network.processJson(result, "bx"));
+                            ball.ballPosition.y = Float.parseFloat(globals.network.processJson(result, "by"));
+                            ball.ballVelocity.x = Float.parseFloat(globals.network.processJson(result, "vx"));
+                            ball.ballVelocity.y = Float.parseFloat(globals.network.processJson(result, "vy"));
+                            lastUpdateBall = Long.parseLong(globals.network.processJson(result, "timeStamp"));
                         }
                     }
 
@@ -173,7 +178,7 @@ public class Game {
                 //System.out.println(globals.playerId);
                 if(globals.playerId!=null){
                     if (globals.playerId.equals("1")){
-                        globals.tools.pushNetRequest(new String[]{"request", "meth", "y", "x", "velocityX", "velocityY" }, new String []{"BALL", "SET", ball.ballPosition.y+"", ball.ballPosition.x+"", ball.ballVelocity.x+"", ball.ballVelocity.y+""});
+                        globals.tools.pushNetRequest(new String[]{"request", "meth", "by", "bx", "velocityX", "velocityY" }, new String []{"BALL", "SET", ball.ballPosition.y+"", ball.ballPosition.x+"", ball.ballVelocity.x+"", ball.ballVelocity.y+""});
 
                     } else {
                         String result = globals.tools.pushNetRequest(new String[]{"request", "meth", "y", "x", "velocityX", "velocityY" }, new String []{"BALL", "GET", ball.ballPosition.y+"", ball.ballPosition.x+"", ball.ballVelocity.x+"", ball.ballVelocity.y+""});
