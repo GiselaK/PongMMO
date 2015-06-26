@@ -34,7 +34,7 @@ public class Ball {
         sprite.setPosition(10, 10);
         ballPosition = new Vector2();
         ballVelocity = new Vector2();
-        speed = globals.gameHeight * 3/10;
+        speed = globals.gameHeight * 4/10;
         ballVelocity.y = speed;
         ballVelocity.x = speed;
         rectanle = new Texture(Gdx.files.internal("rectangle.jpeg"));
@@ -77,19 +77,43 @@ public class Ball {
         ballVelocity.x *= -1;
         ballVelocity.y *= 1;
     }
+    public boolean pOneYEqualsBallY(){
+        if(ballPosition.y  > game.pOne.playerPosition.y && ballPosition.y < game.pOne.playerPosition.y + game.paddleHeight){
+            return true;
+        }
+        return false;
+    }
+    public boolean pTwoYEqualsBallY(){
+        if((ballPosition.y + ballSize > game.pTwo.playerPosition.y) && ( ballPosition.y < game.pTwo.playerPosition.y + game.paddleHeight)){
+            return true;
+        }
+        return false;
+    }
+    public boolean pOneXEqualsBallX(){
+        if(ballPosition.x <= ((globals.width - globals.getWidth) / 2) && ballPosition.x >= ((globals.width - globals.getWidth) / 2)  - game.paddleWidth){
+            return true;
+        }
+        return false;
+    }
+    public boolean pTwoXEqualsBallX(){
+        if(ballPosition.x + ballSize >= ((globals.width - globals.getWidth) / 2) + globals.getWidth && ballPosition.x  + ballSize<= ((globals.width - globals.getWidth) / 2) + globals.getWidth + game.paddleWidth){
+            return true;
+        }
+        return false;
+    }
     public void moveBall() {
         float deltaTime = Gdx.graphics.getDeltaTime();
-        if ((ballPosition.y  > game.pOne.playerPosition.y && ballPosition.y < game.pOne.playerPosition.y + game.paddleHeight && ballPosition.x <= ((globals.width - globals.getWidth) / 2) && ballPosition.x >= ((globals.width - globals.getWidth) / 2)  - game.paddleWidth && ballVelocity.x < 0 && ballVelocity.y > 0)){
+        if ((pOneYEqualsBallY() && pOneXEqualsBallX() && ballVelocity.x < 0 && ballVelocity.y > 0)){
             setBallVel();
         }
-        if (ballPosition.y  > game.pOne.playerPosition.y && ballPosition.y < game.pOne.playerPosition.y + game.paddleHeight && ballPosition.x <= ((globals.width - globals.getWidth) / 2) && ballPosition.x >= ((globals.width - globals.getWidth) / 2)  - game.paddleWidth && ballVelocity.x < 0 && ballVelocity.y < 0){
+        if (pOneYEqualsBallY() && pOneXEqualsBallX() && ballVelocity.x < 0 && ballVelocity.y < 0){
             setBallVel();
         }
 
-        if ((ballPosition.y + ballSize > game.pTwo.playerPosition.y) && ( ballPosition.y < game.pTwo.playerPosition.y + game.paddleHeight ) &&  ballPosition.x + ballSize >= ((globals.width - globals.getWidth) / 2) + globals.getWidth && ballPosition.x  + ballSize<= ((globals.width - globals.getWidth) / 2) + globals.getWidth + game.paddleWidth && ballVelocity.x > 0 && ballVelocity.y < 0 ) {
+        if (pTwoYEqualsBallY() && pTwoXEqualsBallX() && ballVelocity.x > 0 && ballVelocity.y < 0 ) {
             setBallVel();
         }
-        if ((ballPosition.y + ballSize > game.pTwo.playerPosition.y) && ( ballPosition.y < game.pTwo.playerPosition.y + game.paddleHeight ) &&  ballPosition.x + ballSize >= ((globals.width - globals.getWidth) / 2) + globals.getWidth && ballPosition.x  + ballSize<= ((globals.width - globals.getWidth) / 2) + globals.getWidth + game.paddleWidth && ballVelocity.x > 0 && ballVelocity.y > 0 ) {
+        if (pTwoYEqualsBallY() &&  pTwoXEqualsBallX() && ballVelocity.x > 0 && ballVelocity.y > 0 ) {
             setBallVel();
         }
 
@@ -103,16 +127,10 @@ public class Ball {
             setBallPos();
             game.addScore("pTwo");
             ballVelocity.x*=-1;
-//            ballVelocity.x = speed;
-//            ++;
         }else if (ballPosition.x + ballSize >= (((width - globals.getWidth)/2) + globals.getWidth+ 4*ballSize) && ballVelocity.x > 0 ) {
             setBallPos();
             game.addScore("pOne");
             ballVelocity.x*=-1;
-//            game.pTwo.score++;
-
-//            ballVelocity.y = speed;
-
         }
         ballPosition.y += ballVelocity.y*deltaTime;
         ballPosition.x += ballVelocity.x*deltaTime;

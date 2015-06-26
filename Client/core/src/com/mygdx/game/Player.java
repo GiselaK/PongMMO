@@ -18,36 +18,52 @@ public class Player {
     public int score;
     public Rectangle playerBounds;
     public String direction;
+    private Globals globals;
 
 
-    Player () {
+    Player (Globals globals) {
         batch = new SpriteBatch();
         paddle = new Texture("badlogic.jpg");
         playerPosition = new Vector2();
         height = Gdx.graphics.getHeight();
         width = Gdx.graphics.getWidth();
-        playerPosition.y = (height/2)-(100/2);
-        lastTouch = height/2;
+        playerPosition.y = (height / 2) - (100 / 2);
+        lastTouch = height / 2;
         direction = "nowhere";
+
         playerBounds = new Rectangle(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
         if (left) {
             left = false;
         } else {
-            playerPosition.x=width-50;
+            playerPosition.x = width - 50;
         }
-
+        this.globals = globals;
     }
-
-    public void moveLeft(){
-        playerPosition.y+=2;
-        direction = "left";
-        playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
+    public void checkMove(){
+        lastTouch=Gdx.input.getY();
+        boolean touchedLeft = lastTouch < globals.height/2;
+        boolean touchedRight = lastTouch > globals.height/2;
+        if (touchedLeft) {
+            direction="left";
+            move(direction);
+        }
+        if (touchedRight) {
+            direction="right";
+            move(direction);
+        }
     }
+    public void move(String direction){
+        boolean paddleOffScreenLeft = playerPosition.y > globals.gameHeight - globals.gameHeight/5;
 
-    public void moveRight(){
-        playerPosition.y-=2;
-        direction = "right";
-        playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
+        boolean paddleOffScreenRight = playerPosition.y < 0;
+        if (direction.equals("left") && !paddleOffScreenLeft) {
+            playerPosition.y += 2;
+            playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
+        }
+        if (direction.equals("right") && !paddleOffScreenRight) {
+            playerPosition.y -= 2;
+            playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
+        }
     }
 
 }

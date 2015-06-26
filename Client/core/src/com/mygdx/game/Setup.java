@@ -7,10 +7,13 @@ public class Setup {
         this.globals = globals;
     }
 
-    public String connect() {
+    public void connect() {
         String response = globals.tools.pushNetRequest(new String []{"request"}, new String []{ "JOIN"});
-        if (response == null) return "Connection failure.";
-        globals.playerId=globals.network.processJson(response, "player");
-        return "success";
+        if (response == null) {
+            globals.error = "Connection Error";
+            globals.gameState = Globals.GameState.ERROR;
+        }
+        globals.playerId = globals.network.processJson(response, "player");
+        globals.gameState = Globals.GameState.STARTED;
     }
 }
