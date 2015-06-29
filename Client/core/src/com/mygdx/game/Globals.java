@@ -19,6 +19,7 @@ public class Globals {
     public int getWidth;
     public String winner;
     public String game;
+    public String serverTimeStamp;
 
     Globals() {
         this.width = Gdx.graphics.getWidth();

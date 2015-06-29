@@ -58,11 +58,11 @@ public class Player {
 
         boolean paddleOffScreenRight = playerPosition.y < 0;
         if (direction.equals("left") && !paddleOffScreenLeft) {
-            playerPosition.y += 20*deltaTime;
+            playerPosition.y += 200*deltaTime;
             playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
         }
         if (direction.equals("right") && !paddleOffScreenRight) {
-            playerPosition.y -= 20*deltaTime;
+            playerPosition.y -= 200*deltaTime;
             playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
         }
     }

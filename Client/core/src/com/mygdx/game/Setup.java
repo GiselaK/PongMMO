@@ -15,6 +15,7 @@ public class Setup {
         }
         globals.playerId = globals.network.processJson(response, "player");
         globals.game = globals.network.processJson(response, "game");
+        globals.serverTimeStamp = globals.network.processJson(response, "timestamp");
         globals.gameState = Globals.GameState.MENU;
     }
 }
