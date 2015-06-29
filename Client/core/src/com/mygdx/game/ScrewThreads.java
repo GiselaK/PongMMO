@@ -5,17 +5,19 @@ public class ScrewThreads implements Runnable {
     private long lastUpdatePlayer;
     private Globals globals;
     private Game game;
+
     ScrewThreads (Globals globals, Game game){
         this.globals = globals;
         this.game = game;
     }
+
     public void run() {
         //TODO: Temporary Fix
         globals.gameState = Globals.GameState.STARTED;
 
         while(true) {
             if (globals.gameState.equals(Globals.GameState.STARTED)) {
-            if(globals.playerId!=null) {
+             if(globals.playerId!=null) {
                 if (globals.playerId.equals("1")) {
                     String result = globals.tools.pushNetRequest(new String[]{"request", "player", "y", "direction", "by", "bx", "velocityX", "velocityY", "game"}, new String[]{"UPDATE", "1", game.pOne.playerPosition.y + "", game.pOne.direction, game.ball.ballPosition.y + "", game.ball.ballPosition.x + "", game.ball.ballVelocity.x + "", game.ball.ballVelocity.y + "", globals.game});
                     if (!(globals.network.processJson(result, "timeStamp") == null) && (Long.parseLong(globals.network.processJson(result, "timeStamp")) > lastUpdatePlayer)) {

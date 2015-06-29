@@ -53,15 +53,16 @@ public class Player {
         }
     }
     public void move(String direction){
+        float deltaTime = Gdx.graphics.getDeltaTime();
         boolean paddleOffScreenLeft = playerPosition.y > globals.gameHeight - globals.gameHeight/5;
 
         boolean paddleOffScreenRight = playerPosition.y < 0;
         if (direction.equals("left") && !paddleOffScreenLeft) {
-            playerPosition.y += 2;
+            playerPosition.y += 20*deltaTime;
             playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
         }
         if (direction.equals("right") && !paddleOffScreenRight) {
-            playerPosition.y -= 2;
+            playerPosition.y -= 20*deltaTime;
             playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
         }
     }
