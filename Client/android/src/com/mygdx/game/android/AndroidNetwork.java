@@ -1,5 +1,7 @@
 package com.mygdx.game.android;
 
+import android.content.SharedPreferences;
+
 import com.mygdx.game.Network;
 
 import org.apache.http.HttpResponse;
@@ -36,7 +38,7 @@ public class AndroidNetwork implements Network {
     @Override
     public String sendRequest(String[] keys, String[] values) {
         HttpClient httpClient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://45b8cfa7.ngrok.io");
+        HttpPost httpPost = new HttpPost("http://05ffa9d5.ngrok.io");
 
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
 
@@ -59,4 +61,5 @@ public class AndroidNetwork implements Network {
             return null;
         }
     }
+
 }

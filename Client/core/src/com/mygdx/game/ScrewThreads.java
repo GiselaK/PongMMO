@@ -13,7 +13,8 @@ public class ScrewThreads implements Runnable {
         //TODO: Temporary Fix
         globals.gameState = Globals.GameState.STARTED;
 
-        while(true && globals.gameState.equals(Globals.GameState.STARTED)) {
+        while(true) {
+            if (globals.gameState.equals(Globals.GameState.STARTED)) {
             if(globals.playerId!=null) {
                 if (globals.playerId.equals("1")) {
                     String result = globals.tools.pushNetRequest(new String[]{"request", "player", "y", "direction", "by", "bx", "velocityX", "velocityY"}, new String[]{"UPDATE", "1", game.pOne.playerPosition.y + "", game.pOne.direction, game.ball.ballPosition.y + "", game.ball.ballPosition.x + "", game.ball.ballVelocity.x + "", game.ball.ballVelocity.y + ""});
@@ -42,6 +43,6 @@ public class ScrewThreads implements Runnable {
                     }
                 }
             }
-        }
+        }}
     }
 }
