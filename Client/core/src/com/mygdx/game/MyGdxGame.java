@@ -10,6 +10,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	private Globals globals;
 	private Setup setup;
 	private Game game;
+    private Menu menu;
 	public void setNetwork(Network network) {
 		this.network = network;
 	}
@@ -21,6 +22,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		game = new Game(globals);
 		globals.network = network;
 		text = new Text(globals);
+        menu = new Menu(globals);
 		setup.connect();
 	}
 
@@ -31,16 +33,27 @@ public class MyGdxGame extends ApplicationAdapter {
 				game.update();
 				game.draw();
 				break;
+			case MENU:
+				menu.update();
+                menu.draw();
+				break;
 			case GAMEOVER:
-				Gdx.gl.glClearColor(1, 0, 0, 1);
+				Gdx.gl.glClearColor(0, 0, 0, 1);
 				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 				globals.batch.begin();
 				if(globals.playerId.equals(globals.winner)){
-					text.draw("You Won", 200, 175);
+                   text.draw("You Won", globals.width/2-20, globals.height-200);
 				}
 				else {
-					text.draw("You Lost", 200, 175);
+                    text.draw("You Lost", globals.width/2-20, globals.height-200);
 				}
+                if (Gdx.input.justTouched()) {
+                    globals.gameState = Globals.GameState.MENU;
+                    globals.tools.pushNetRequest(new String[]{"request"}, new String[]{"RESET"});
+                    setup.connect();
+                    game.pOne.score = 0;
+                    game.pTwo.score = 0;
+                }
 				globals.batch.end();
 				break;
 			case ERROR:

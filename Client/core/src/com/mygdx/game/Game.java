@@ -23,7 +23,7 @@ public class Game {
         paddleHeight = globals.gameHeight/5;
         paddleWidth = globals.gameHeight/10;
         ball = new Ball(globals, this);
-        winningScore = 10;
+        winningScore = 3;
         resizeGame();
         resetGame();
         (new Thread(new ScrewThreads(globals, this))).start();

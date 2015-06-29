@@ -30,7 +30,7 @@ var Ball = function(x, y, vx, vy) {
   this.velocity = new Point(vx, vy);
 }
 
-var Game = new function() {
+Game = new function() {
   this.players = [];
   this.p1 = [new Point(0, 0)];
   this.p1d = [new Point(0, 0)];
@@ -42,15 +42,14 @@ var Game = new function() {
 
 //Handler for HTTP Requests
 var httpHandler = function(req, res) {
+
   var body = "";
   req.on("data", function (data) {
     body += data;
   });
   req.on("end", function (){
-    console.log(body+"");
     var jsonData = parseRequest(body);
     var response = handleRequest(jsonData);
-    console.log(response);
     res.writeHead(response.status);
     res.end(response.data);
   });
@@ -70,7 +69,7 @@ var parseRequest = function(data) {
 //Handle the Actual Server Request
 var handleRequest = function(jsonData) {
   var returnData;
-  console.log(JSON.stringify(jsonData));
+  console.log(jsonData.request + " Request")
   switch (jsonData.request) {
     case "JOIN":
       Game.players.push(new Player());
@@ -95,6 +94,17 @@ var handleRequest = function(jsonData) {
       } else if (jsonData.meth == "GET") {
         returnData = {status: 200, data:JSON.stringify({x: Game.ball[Game.ball.length-1].pos.x, y: Game.ball[Game.ball.length-1].pos.y, vx: Game.ball[Game.ball.length-1].velocity.x, vy: Game.ball[Game.ball.length-1].velocity.y, setTime: Game.ball[Game.ball.length-1].pos.time})};
       }
+      break;
+    case "RESET":
+      Game = new function() {
+        this.players = [];
+        this.p1 = [new Point(0, 0)];
+        this.p1d = [new Point(0, 0)];
+        this.ball = [new Ball(0, 0, 0, 0)];
+        this.p2 = [new Point(0, 0)];
+        this.p2d = [new Point(0, 0)];
+      }
+      returnData = {status: 200, data:"Meh"};
       break;
     default:
       returnData = {status:200, data:"Request Failed"};
