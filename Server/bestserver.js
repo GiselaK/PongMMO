@@ -87,14 +87,6 @@ var handleRequest = function(jsonData) {
         returnData = {status:200, data:JSON.stringify({y: Game.p1[Game.p1.length-1].y, by: Game.ball[Game.ball.length-1].y, bx:  Game.ball[Game.ball.length-1].x, direction: Game.p1d[Game.p1d.length-1].y, timeStamp: Game.p1[Game.p1.length-1].time, bx: Game.ball[Game.ball.length-1].pos.x, by: Game.ball[Game.ball.length-1].pos.y, vx: Game.ball[Game.ball.length-1].velocity.x, vy: Game.ball[Game.ball.length-1].velocity.y, setTime: Game.ball[Game.ball.length-1].pos.time})};
       }
       break;
-    case "BALL":
-      if (jsonData.meth == "SET") {
-        Game.ball.push(new Ball(jsonData.x, jsonData.y, jsonData.velocityX, jsonData.velocityY));
-        returnData = {status: 200, data: "meh"};
-      } else if (jsonData.meth == "GET") {
-        returnData = {status: 200, data:JSON.stringify({x: Game.ball[Game.ball.length-1].pos.x, y: Game.ball[Game.ball.length-1].pos.y, vx: Game.ball[Game.ball.length-1].velocity.x, vy: Game.ball[Game.ball.length-1].velocity.y, setTime: Game.ball[Game.ball.length-1].pos.time})};
-      }
-      break;
     case "RESET":
       Game = new function() {
         this.players = [];
