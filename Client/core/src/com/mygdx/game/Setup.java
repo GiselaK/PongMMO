@@ -14,6 +14,7 @@ public class Setup {
             globals.gameState = Globals.GameState.ERROR;
         }
         globals.playerId = globals.network.processJson(response, "player");
+        globals.game = globals.network.processJson(response, "game");
         globals.gameState = Globals.GameState.MENU;
     }
 }

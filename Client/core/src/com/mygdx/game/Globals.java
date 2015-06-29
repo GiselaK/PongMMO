@@ -18,6 +18,7 @@ public class Globals {
     public int gameHeight;
     public int getWidth;
     public String winner;
+    public String game;
 
     Globals() {
         this.width = Gdx.graphics.getWidth();

@@ -17,7 +17,7 @@ public class ScrewThreads implements Runnable {
             if (globals.gameState.equals(Globals.GameState.STARTED)) {
             if(globals.playerId!=null) {
                 if (globals.playerId.equals("1")) {
-                    String result = globals.tools.pushNetRequest(new String[]{"request", "player", "y", "direction", "by", "bx", "velocityX", "velocityY"}, new String[]{"UPDATE", "1", game.pOne.playerPosition.y + "", game.pOne.direction, game.ball.ballPosition.y + "", game.ball.ballPosition.x + "", game.ball.ballVelocity.x + "", game.ball.ballVelocity.y + ""});
+                    String result = globals.tools.pushNetRequest(new String[]{"request", "player", "y", "direction", "by", "bx", "velocityX", "velocityY", "game"}, new String[]{"UPDATE", "1", game.pOne.playerPosition.y + "", game.pOne.direction, game.ball.ballPosition.y + "", game.ball.ballPosition.x + "", game.ball.ballVelocity.x + "", game.ball.ballVelocity.y + "", globals.game});
                     if (!(globals.network.processJson(result, "timeStamp") == null) && (Long.parseLong(globals.network.processJson(result, "timeStamp")) > lastUpdatePlayer)) {
                         game.pTwo.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
                         game.pTwo.direction = globals.network.processJson(result, "direction");
@@ -26,7 +26,7 @@ public class ScrewThreads implements Runnable {
 
                 }
                 else {
-                    String result = globals.tools.pushNetRequest(new String[]{"request", "player", "y", "direction"}, new String[]{"UPDATE", "2", game.pTwo.playerPosition.y + "", game.pTwo.direction});
+                    String result = globals.tools.pushNetRequest(new String[]{"request", "player", "y", "direction", "game"}, new String[]{"UPDATE", "2", game.pTwo.playerPosition.y + "", game.pTwo.direction, globals.game});
                     if (!(globals.network.processJson(result, "timeStamp") == null)) {
                         if (Long.parseLong(globals.network.processJson(result, "timeStamp")) > lastUpdatePlayer) {
                             game.pOne.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));

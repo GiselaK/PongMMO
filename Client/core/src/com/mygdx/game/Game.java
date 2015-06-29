@@ -23,7 +23,7 @@ public class Game {
         paddleHeight = globals.gameHeight/5;
         paddleWidth = globals.gameHeight/10;
         ball = new Ball(globals, this);
-        winningScore = 3;
+        winningScore = 20;
         resizeGame();
         resetGame();
         (new Thread(new ScrewThreads(globals, this))).start();
@@ -39,12 +39,13 @@ public class Game {
     }
     public void update() {
         ball.updateGame();
-        if (globals.playerId.equals("1")) {
-            updatePlayersPos(pOne,pTwo);
-        } else {
-            updatePlayersPos(pTwo,pOne);
+        if(globals.playerId!=null) {
+            if (globals.playerId.equals("1")) {
+                updatePlayersPos(pOne, pTwo);
+            } else {
+                updatePlayersPos(pTwo, pOne);
+            }
         }
-
     }
     public void addScore(String player){
         if(player.equals("pOne")){
