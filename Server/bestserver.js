@@ -30,7 +30,7 @@ var Ball = function(x, y, vx, vy) {
   this.velocity = new Point(vx, vy);
 }
 
-Game = new function() {
+var game = function() {
   this.players = [];
   this.p1 = [new Point(0, 0)];
   this.p1d = [new Point(0, 0)];
@@ -39,6 +39,8 @@ Game = new function() {
   this.p2d = [new Point(0, 0)];
 }
 
+var games = [];
+games.push(new game());
 
 //Handler for HTTP Requests
 var httpHandler = function(req, res) {
@@ -72,10 +74,20 @@ var handleRequest = function(jsonData) {
   console.log(jsonData.request + " Request")
   switch (jsonData.request) {
     case "JOIN":
-      Game.players.push(new Player());
-      returnData = {status:200, data:JSON.stringify({player:Game.players.length})};
+      if (games[games.length-1].players.length == 0) {
+        games[games.length-1].players.push(new Player());
+        returnData = {status:200, data:JSON.stringify({player: 1, game: games.length-1})};
+      } else if (games[games.length-1].players.length == 1) {
+        games[games.length-1].players.push(new Player());
+        returnData = {status:200, data:JSON.stringify({player: 2})};
+      } else {
+        games.push(new game());
+        games[games.length-1].players.push(new Player());
+        returnData = {status:200, data:JSON.stringify({player: 1})};
+      }
       break;
     case "UPDATE":
+      var Game = game[jsonData.game];
       if (jsonData.player == 1) {
         Game.p1.push(new Point(0, jsonData.y));
         Game.p1d.push(new Point(0, jsonData.direction));
