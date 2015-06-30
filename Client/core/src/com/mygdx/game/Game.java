@@ -24,6 +24,7 @@ public class Game {
         paddleWidth = globals.gameHeight/10;
         ball = new Ball(globals, this);
         winningScore = 20;
+
         resizeGame();
         resetGame();
         (new Thread(new ScrewThreads(globals, this))).start();

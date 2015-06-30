@@ -26,6 +26,7 @@ public class Ball {
     public Texture rectanle;
     private Globals globals;
     private Game game;
+    private float tatas;
 
     Ball (Globals globals, Game game) {
         batch = new SpriteBatch();
@@ -40,6 +41,7 @@ public class Ball {
         rectanle = new Texture(Gdx.files.internal("rectangle.jpeg"));
         rectangle = new Rectangle();
         ballBounds = new Rectangle(ballPosition.x, ballPosition.y, ball.getWidth(), ball.getHeight());
+        tatas = globals.gameHeight / 20;
 
         this.game = game;
         this.globals = globals;
@@ -78,25 +80,25 @@ public class Ball {
         ballVelocity.y *= 1;
     }
     public boolean pOneYEqualsBallY(){
-        if(ballPosition.y  > game.pOne.playerPosition.y && ballPosition.y < game.pOne.playerPosition.y + game.paddleHeight){
+        if(ballPosition.y  > game.pOne.playerPosition.y - tatas && ballPosition.y < game.pOne.playerPosition.y + game.paddleHeight + tatas){
             return true;
         }
         return false;
     }
     public boolean pTwoYEqualsBallY(){
-        if((ballPosition.y + ballSize > game.pTwo.playerPosition.y) && ( ballPosition.y < game.pTwo.playerPosition.y + game.paddleHeight)){
+        if((ballPosition.y + ballSize > game.pTwo.playerPosition.y + tatas) && ( ballPosition.y < game.pTwo.playerPosition.y + game.paddleHeight - tatas)){
             return true;
         }
         return false;
     }
     public boolean pOneXEqualsBallX(){
-        if(ballPosition.x <= ((globals.width - globals.getWidth) / 2) && ballPosition.x >= ((globals.width - globals.getWidth) / 2)  - game.paddleWidth){
+        if(ballPosition.x <= ((globals.width - globals.getWidth) / 2) && ballPosition.x >= ((globals.width - globals.getWidth) / 2)  - game.paddleWidth - tatas){
             return true;
         }
         return false;
     }
     public boolean pTwoXEqualsBallX(){
-        if(ballPosition.x + ballSize >= ((globals.width - globals.getWidth) / 2) + globals.getWidth && ballPosition.x  + ballSize<= ((globals.width - globals.getWidth) / 2) + globals.getWidth + game.paddleWidth){
+        if(ballPosition.x + ballSize >= ((globals.width - globals.getWidth) / 2) + globals.getWidth && ballPosition.x  + ballSize<= ((globals.width - globals.getWidth) / 2) + globals.getWidth + game.paddleWidth + tatas){
             return true;
         }
         return false;
