@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.util.concurrent.*;
 
@@ -14,6 +15,7 @@ public class Game {
     public float paddleHeight;
     public float paddleWidth;
     public int winningScore;
+    private OrthographicCamera camera;
 
     Game(Globals globals) {
         this.globals = globals;
@@ -24,6 +26,8 @@ public class Game {
         paddleWidth = globals.gameHeight/10;
         ball = new Ball(globals, this);
         winningScore = 20;
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         resizeGame();
         resetGame();
@@ -69,6 +73,8 @@ public class Game {
     public void draw() {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        camera.update();
+        shapie.setProjectionMatrix(camera.combined);
         shapie.begin(ShapeRenderer.ShapeType.Filled);
         shapie.setColor(0, 0, 0, 1);
         shapie.rect(((globals.width - globals.getWidth) / 2), (globals.height - globals.gameHeight) / 2, globals.getWidth, globals.gameHeight);

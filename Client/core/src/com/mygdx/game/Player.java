@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -16,22 +17,23 @@ public class Player {
     int lastTouch;
     static boolean left = true;
     public int score;
-    public Rectangle playerBounds;
+//    public Rectangle playerBounds;
     public String direction;
     private Globals globals;
+
+
 
 
     Player (Globals globals) {
         batch = new SpriteBatch();
         paddle = new Texture("badlogic.jpg");
         playerPosition = new Vector2();
-        height = Gdx.graphics.getHeight();
-        width = Gdx.graphics.getWidth();
+        height = globals.gameHeight/5;
+        width = globals.gameHeight/10;
         playerPosition.y = (height / 2) - (100 / 2);
         lastTouch = height / 2;
         direction = "nowhere";
-
-        playerBounds = new Rectangle(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
+//        playerBounds = new Rectangle(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
         if (left) {
             left = false;
         } else {
@@ -40,30 +42,30 @@ public class Player {
         this.globals = globals;
     }
     public void checkMove(){
-        lastTouch=Gdx.input.getY();
-        boolean touchedLeft = lastTouch < globals.height/2;
-        boolean touchedRight = lastTouch > globals.height/2;
-        if (touchedLeft) {
-            direction="left";
-            move(direction);
+        lastTouch = Gdx.input.getY();
+        if(lastTouch <= playerPosition.y+height/2+10 && lastTouch>=playerPosition.y+height/2-10){
+            direction = "nowhere";
         }
-        if (touchedRight) {
+        else if (lastTouch<playerPosition.y+height/2) {
             direction="right";
-            move(direction);
         }
+        else if (lastTouch>playerPosition.y+height/2){
+            direction = "left";
+        }
+        move(direction);
+
     }
     public void move(String direction){
         float deltaTime = Gdx.graphics.getDeltaTime();
         boolean paddleOffScreenLeft = playerPosition.y > globals.gameHeight - globals.gameHeight/5;
-
         boolean paddleOffScreenRight = playerPosition.y < 0;
         if (direction.equals("left") && !paddleOffScreenLeft) {
             playerPosition.y += 200*deltaTime;
-            playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
+//            playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
         }
         if (direction.equals("right") && !paddleOffScreenRight) {
             playerPosition.y -= 200*deltaTime;
-            playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
+//            playerBounds.set(playerPosition.x, playerPosition.y, paddle.getWidth(), paddle.getHeight());
         }
     }
 

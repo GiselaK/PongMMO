@@ -38,7 +38,7 @@ public class AndroidNetwork implements Network {
     @Override
     public String sendRequest(String[] keys, String[] values) {
         HttpClient httpClient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://d46754d5.ngrok.io");
+        HttpPost httpPost = new HttpPost("http://21b7fcfb.ngrok.io");
 
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
 

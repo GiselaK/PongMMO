@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class MyGdxGame extends ApplicationAdapter {
 	private Network network;
@@ -11,6 +12,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	private Setup setup;
 	private Game game;
     private Menu menu;
+//	private OrthographicCamera camera;
 	public void setNetwork(Network network) {
 		this.network = network;
 	}
@@ -24,10 +26,15 @@ public class MyGdxGame extends ApplicationAdapter {
 		text = new Text(globals);
         menu = new Menu(globals);
 		setup.connect();
+		//camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		//camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
 	}
 
 	@Override
 	public void render () {
+
+
 		switch (globals.gameState) {
 			case STARTED:
 				game.update();
@@ -53,7 +60,7 @@ public class MyGdxGame extends ApplicationAdapter {
                     setup.connect();
                     game.pOne.score = 0;
                     game.pTwo.score = 0;
-                }
+				}
 				globals.batch.end();
 				break;
 			case ERROR:
@@ -68,5 +75,6 @@ public class MyGdxGame extends ApplicationAdapter {
 				System.err.println("Error: Render game state switch defaulted");
 				break;
 		}
+		//globals.batch.setProjectionMatrix(camera.combined);
 	}
 }
