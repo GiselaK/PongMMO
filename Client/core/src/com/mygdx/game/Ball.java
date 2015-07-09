@@ -1,6 +1,8 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -27,6 +29,8 @@ public class Ball {
     private Globals globals;
     private Game game;
     private float tatas;
+    public Sound bounce = Gdx.audio.newSound(Gdx.files.internal("paddlehit.wav"));
+    public Music music = Gdx.audio.newMusic(Gdx.files.internal("song.mp3"));
 
     Ball (Globals globals, Game game) {
         batch = new SpriteBatch();
@@ -70,6 +74,9 @@ public class Ball {
     }
     public void updateGame() {
         moveBall();
+        music.play();
+        music.isLooping();
+        music.setVolume(1);
     }
     public void setBallPos() {
         ballPosition.y = ((height - globals.gameHeight)/2) + (globals.gameHeight  / 2);
@@ -103,20 +110,32 @@ public class Ball {
         }
         return false;
     }
+    public void changeColor(){
+        game.r = game.rand.nextFloat();
+        game.g = game.rand.nextFloat();
+        game.b = game.rand.nextFloat();
+    }
     public void moveBall() {
         float deltaTime = Gdx.graphics.getDeltaTime();
         if ((pOneYEqualsBallY() && pOneXEqualsBallX() && ballVelocity.x < 0 && ballVelocity.y > 0)){
+            changeColor();
             setBallVel();
+            bounce.play();
         }
         if (pOneYEqualsBallY() && pOneXEqualsBallX() && ballVelocity.x < 0 && ballVelocity.y < 0){
+            changeColor();
             setBallVel();
+            bounce.play();
         }
 
         if (pTwoYEqualsBallY() && pTwoXEqualsBallX() && ballVelocity.x > 0 && ballVelocity.y < 0 ) {
+            changeColor();
             setBallVel();
         }
         if (pTwoYEqualsBallY() &&  pTwoXEqualsBallX() && ballVelocity.x > 0 && ballVelocity.y > 0 ) {
+            changeColor();
             setBallVel();
+            bounce.play();
         }
 
         if (ballPosition.y <= ((height - globals.gameHeight) /2) && ballVelocity.y < 0 ) {

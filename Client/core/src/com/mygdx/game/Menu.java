@@ -48,6 +48,7 @@ public class Menu {
                 MyGdxGame.text.draw("Stats", globals.width/2-20, 200);
                 break;
             case Play:
+                globals.gameState = Globals.GameState.WAITING;
                 break;
             case Stats:
                 MyGdxGame.text.draw("Stats not yet Avaliable", globals.width/2-100, globals.height-200);
@@ -59,7 +60,7 @@ public class Menu {
     }
     public void update() {
         Quadran input = getInput();
-        if (input == Quadran.NULL) return;
+        if (input == Quadran.NULL){ return;}
         switch (page) {
             case Home:
                 if (input == Quadran.TL || input == Quadran.TR) {
@@ -69,7 +70,7 @@ public class Menu {
                 }
                 break;
             case Play:
-                globals.gameState = Globals.GameState.STARTED;
+                globals.gameState = Globals.GameState.WAITING;
                 page = Page.Home;
                 break;
             case Stats:

@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
+import java.util.Random;
 import java.util.concurrent.*;
 
 public class Game {
@@ -16,6 +18,12 @@ public class Game {
     public float paddleWidth;
     public int winningScore;
     private OrthographicCamera camera;
+    public Thread theTread;
+
+    Random rand = new Random();
+    public float r = rand.nextFloat();
+    public float g = rand.nextFloat();
+    public float b = rand.nextFloat();
 
     Game(Globals globals) {
         this.globals = globals;
@@ -25,13 +33,17 @@ public class Game {
         paddleHeight = globals.gameHeight/5;
         paddleWidth = globals.gameHeight/10;
         ball = new Ball(globals, this);
-        winningScore = 20;
+        winningScore = 2;
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         resizeGame();
         resetGame();
-        (new Thread(new ScrewThreads(globals, this))).start();
+
+    }
+    public void runThread(){
+        theTread=(new Thread(new ScrewThreads(globals, this)));
+        theTread.start();
     }
     public void updatePlayersPos (Player myPaddle, Player yourPlayer){
         myPaddle.checkMove();
@@ -71,7 +83,7 @@ public class Game {
     }
 
     public void draw() {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(r, g, b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         shapie.setProjectionMatrix(camera.combined);

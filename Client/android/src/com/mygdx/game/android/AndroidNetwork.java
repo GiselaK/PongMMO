@@ -26,9 +26,13 @@ public class AndroidNetwork implements Network {
 
     @Override
     public String processJson(String data, String key) {
+        if (data==null){
+            return null;
+        }
 
         try {
             JSONObject obj = new JSONObject(data);
+
             return obj.getString(key);
 
         } catch (JSONException e) {
@@ -38,7 +42,7 @@ public class AndroidNetwork implements Network {
     @Override
     public String sendRequest(String[] keys, String[] values) {
         HttpClient httpClient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://21b7fcfb.ngrok.io");
+        HttpPost httpPost = new HttpPost("http://eb72f4c4.ngrok.io");
 
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
 
@@ -58,6 +62,7 @@ public class AndroidNetwork implements Network {
         catch (ClientProtocolException error) {
             return null;
         } catch (IOException error) {
+
             return null;
         }
     }

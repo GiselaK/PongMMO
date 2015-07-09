@@ -19,6 +19,7 @@ public class Player {
     public int score;
 //    public Rectangle playerBounds;
     public String direction;
+    public String connection;
     private Globals globals;
 
 

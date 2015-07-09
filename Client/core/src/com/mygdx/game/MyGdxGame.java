@@ -4,14 +4,16 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public class MyGdxGame extends ApplicationAdapter {
 	private Network network;
 	public static Text text;
 	private Globals globals;
-	private Setup setup;
 	private Game game;
     private Menu menu;
+	public Boolean setup;
+	public Boolean firstTime;
 //	private OrthographicCamera camera;
 	public void setNetwork(Network network) {
 		this.network = network;
@@ -20,12 +22,12 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		globals = new Globals();
-		setup = new Setup(globals);
 		game = new Game(globals);
 		globals.network = network;
 		text = new Text(globals);
         menu = new Menu(globals);
-		setup.connect();
+		firstTime = true;
+
 		//camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		//camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
@@ -36,38 +38,71 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
 		switch (globals.gameState) {
+			case MENU:
+				firstTime=true;
+				setup=false;
+				menu.update();
+				menu.draw();
+				break;
 			case STARTED:
 				game.update();
 				game.draw();
 				break;
-			case MENU:
-				menu.update();
-                menu.draw();
+			case WAITING:
+				if(setup==false){
+					Setup.connect(globals);
+					setup=true;
+				}
+
+				Gdx.gl.glClearColor(0, 0, 0, 1);
+				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+				globals.batch.begin();
+				text.draw("Please wait for another player", globals.width / 2 - 20, globals.height - 200);
+				globals.batch.end();
+				if(firstTime==true){
+					game.runThread();
+					firstTime=false;
+				}
 				break;
 			case GAMEOVER:
+				firstTime=true;
+				setup=false;
 				Gdx.gl.glClearColor(0, 0, 0, 1);
 				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 				globals.batch.begin();
 				if(globals.playerId.equals(globals.winner)){
-                   text.draw("You Won", globals.width/2-20, globals.height-200);
+                   text.draw("You Won. Tap to Play Again", globals.width/2-20, globals.height-200);
 				}
 				else {
-                    text.draw("You Lost", globals.width/2-20, globals.height-200);
+                    text.draw("You Lost. Tap to Play Again", globals.width/2-20, globals.height-200);
 				}
-                if (Gdx.input.justTouched()) {
-                    globals.gameState = Globals.GameState.MENU;
-                    globals.tools.pushNetRequest(new String[]{"request"}, new String[]{"RESET"});
-                    setup.connect();
-                    game.pOne.score = 0;
-                    game.pTwo.score = 0;
-				}
+//                if (Gdx.input.justTouched()) {
+//                    globals.gameState = Globals.GameState.MENU;
+//					String response = globals.tools.pushNetRequest(new String []{"request"}, new String []{ "CHECK"});
+//					Setup.connect(globals);
+//					globals.gameState = Globals.GameState.WAITING;
+//                    game.pOne.score = 0;
+//                    game.pTwo.score = 0;
+//				}
+				globals.batch.end();
+				break;
+			case pDisconnect:
+				Gdx.gl.glClearColor(0, 0, 0, 1);
+				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+				globals.batch.begin();
+				text.draw("Please fix your wifi connection and try again", globals.width / 2 - 20, globals.height-200);
 				globals.batch.end();
 				break;
 			case ERROR:
 				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 				globals.batch.begin();
 				text.draw("You have reached an error", 200, 200);
-				text.draw(globals.error, 200, 175);
+				if (globals.error != null) {
+					text.draw(globals.error, 0, 0);
+					System.out.println(globals.error);
+				}
+
+//				text.draw(globals.error, 200, 175);
 				globals.batch.end();
 				break;
 
