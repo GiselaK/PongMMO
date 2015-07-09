@@ -28,6 +28,7 @@ public class ScrewThreads implements Runnable {
 
     public void run() {
         System.out.println("run");
+        while (true){
         while (globals.gameState.equals(Globals.GameState.WAITING)){
             System.out.println("Waiting");
             String response = globals.tools.pushNetRequest(new String []{"request"}, new String []{ "CHECK"});
@@ -48,7 +49,7 @@ public class ScrewThreads implements Runnable {
             System.out.println("Started");
             float deltaTime = Gdx.graphics.getDeltaTime();
             if (globals.playerId.equals("1")) {
-                String result = globals.tools.pushNetRequest(new String[]{"request", "player", "y", "direction", "by", "bx", "velocityX", "velocityY", "game"}, new String[]{"UPDATE", "1", (game.pOne.playerPosition.y + calcPos() * 200) + "", game.pOne.direction, game.ball.ballPosition.y + "", game.ball.ballPosition.x + "", game.ball.ballVelocity.x + "", game.ball.ballVelocity.y + "",globals.game});
+                String result = globals.tools.pushNetRequest(new String[]{"request", "player", "y", "direction", "by", "bx", "velocityX", "velocityY", "game", "oneScore", "twoScore"}, new String[]{"UPDATE", "1", (game.pOne.playerPosition.y + calcPos() * 200) + "", game.pOne.direction, game.ball.ballPosition.y + "", game.ball.ballPosition.x + "", game.ball.ballVelocity.x + "", game.ball.ballVelocity.y + "",globals.game,game.pOne.score+"",game.pTwo.score+""});
                 if (!(globals.network.processJson(result, "timeStamp") == null) && (Long.parseLong(globals.network.processJson(result, "timeStamp")) > lastUpdatePlayer)) {
                     System.out.println("p1 if"+Gdx.graphics.getDeltaTime());
                     game.pTwo.playerPosition.y = Float.parseFloat(globals.network.processJson(result, "y"));
@@ -75,9 +76,18 @@ public class ScrewThreads implements Runnable {
                         game.ball.ballVelocity.y = Float.parseFloat(globals.network.processJson(result, "vy"));
                         lastUpdateBall = Long.parseLong(globals.network.processJson(result, "timeStamp"));
                     }
+
+                    if(globals.network.processJson(result,"oneScore")!=null &&Integer.parseInt(globals.network.processJson(result,"oneScore"))!=game.pOne.score){
+//                        System.out.println("Player 1:"+game.pOne.score);
+                        game.pOne.score=Integer.parseInt(globals.network.processJson(result, "oneScore"));
+                    }
+                    if(globals.network.processJson(result,"twoScore")!=null &&Integer.parseInt(globals.network.processJson(result,"twoScore"))!=game.pTwo.score){
+//                        System.out.println("Player 2:"+game.pTwo.score);
+                        game.pTwo.score = Integer.parseInt(globals.network.processJson(result,"twoScore"));
+                    }
                 }
             }
         }
-    }
+    }}
 }
 

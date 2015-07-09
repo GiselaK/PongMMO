@@ -91,6 +91,8 @@ var handleRequest = function(jsonData) {
         games[0].ball = [new Ball(0, 0, 0, 0)];
         games[0].p2 = [new Point(0, 0)];
         games[0].p2d = [new Point(0, 0)];
+        games[0].p1Score = -1;
+        games[0].p2Score = -1;
         games[0].players.push(new Player());
         returnData = {status:200, data:JSON.stringify({player: 1, game: 0, ready: "FALSE"})};
       } 
@@ -111,7 +113,7 @@ var handleRequest = function(jsonData) {
       break;
       
     case "UPDATE":
-      var Game = games[jsonData.game];
+      var Game = games[0];
       var theTime = Math.floor(Date.now() / 1000);
       // var run = 0;
       // console.log(jsonData);
@@ -119,6 +121,10 @@ var handleRequest = function(jsonData) {
         Game.p1.push(new Point(0, jsonData.y));
         Game.p1d.push(new Point(0, jsonData.direction));
         Game.ball.push(new Ball(jsonData.bx, jsonData.by, jsonData.velocityX, jsonData.velocityY));
+        Game.players[0].score=jsonData.oneScore;
+        if(Game.players[1]!=null){
+          Game.players[1].score=jsonData.twoScore;
+        }
         lastPlayerUpdate=Game.p2[Game.p2.length-1].time;
         // console.log(Math.floor(Date.now() / 1000));
         // if(run==30){
@@ -137,6 +143,8 @@ var handleRequest = function(jsonData) {
         Game.p2.push(new Point(0, jsonData.y));
         Game.p2d.push(new Point(0, jsonData.direction));
         lastPlayerUpdate=Game.p1[Game.p1.length-1].time;
+        var p2Score;
+
         // console.log(Math.floor(Date.now() / 1000));
         // console.log("theTime:"+theTime+" lastPlayerUpdate:"+lastPlayerUpdate);
         // if(run==30){
@@ -145,7 +153,13 @@ var handleRequest = function(jsonData) {
           //   returnData = {status:200, data:JSON.stringify({y: Game.p1[Game.p1.length-1].y, by: Game.ball[Game.ball.length-1].y, bx:  Game.ball[Game.ball.length-1].x, direction: Game.p1d[Game.p1d.length-1].y, timeStamp: Game.p1[Game.p1.length-1].time, bx: Game.ball[Game.ball.length-1].pos.x, by: Game.ball[Game.ball.length-1].pos.y, vx: Game.ball[Game.ball.length-1].velocity.x, vy: Game.ball[Game.ball.length-1].velocity.y, setTime: Game.ball[Game.ball.length-1].pos.time})};
           // }
           // else{
-            returnData = {status:200, data:JSON.stringify({y: Game.p1[Game.p1.length-1].y, by: Game.ball[Game.ball.length-1].y, bx:  Game.ball[Game.ball.length-1].x, direction: Game.p1d[Game.p1d.length-1].y, timeStamp: Game.p1[Game.p1.length-1].time, bx: Game.ball[Game.ball.length-1].pos.x, by: Game.ball[Game.ball.length-1].pos.y, vx: Game.ball[Game.ball.length-1].velocity.x, vy: Game.ball[Game.ball.length-1].velocity.y, setTime: Game.ball[Game.ball.length-1].pos.time})};
+            if(Game.players[1]!=undefined && Game.players[1].score!=null){
+             p2Score=Game.players[1].score;
+            }
+            else{
+              p2Score=0;
+            }
+            returnData = {status:200, data:JSON.stringify({y: Game.p1[Game.p1.length-1].y, by: Game.ball[Game.ball.length-1].y, bx:  Game.ball[Game.ball.length-1].x, direction: Game.p1d[Game.p1d.length-1].y, timeStamp: Game.p1[Game.p1.length-1].time, bx: Game.ball[Game.ball.length-1].pos.x, by: Game.ball[Game.ball.length-1].pos.y, vx: Game.ball[Game.ball.length-1].velocity.x, vy: Game.ball[Game.ball.length-1].velocity.y, setTime: Game.ball[Game.ball.length-1].pos.time, oneScore:Game.players[0].score, twoScore:p2Score})};
           // }
           // run=0;
         // }

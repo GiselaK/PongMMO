@@ -43,18 +43,16 @@ public class Player {
         this.globals = globals;
     }
     public void checkMove(){
-        lastTouch = Gdx.input.getY();
-        if(lastTouch <= playerPosition.y+height/2+10 && lastTouch>=playerPosition.y+height/2-10){
-            direction = "nowhere";
+        lastTouch=Gdx.input.getY();
+        boolean touchedLeft = lastTouch > globals.height/2;
+        boolean touchedRight = lastTouch < globals.height/2;
+        if (touchedLeft) {
+            direction="left";
         }
-        else if (lastTouch<playerPosition.y+height/2) {
+        if (touchedRight) {
             direction="right";
         }
-        else if (lastTouch>playerPosition.y+height/2){
-            direction = "left";
-        }
         move(direction);
-
     }
     public void move(String direction){
         float deltaTime = Gdx.graphics.getDeltaTime();

@@ -33,7 +33,7 @@ public class Game {
         paddleHeight = globals.gameHeight/5;
         paddleWidth = globals.gameHeight/10;
         ball = new Ball(globals, this);
-        winningScore = 2;
+        winningScore = 5;
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 

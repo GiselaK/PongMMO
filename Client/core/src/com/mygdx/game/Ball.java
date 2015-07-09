@@ -146,11 +146,21 @@ public class Ball {
 
         } else if (ballPosition.x <= ((width - globals.getWidth)/2) - (4*ballSize)  && ballVelocity.x < 0) {
             setBallPos();
-            game.addScore("pTwo");
+            if(globals.playerId.equals("1")){
+                game.addScore("pTwo");
+            }
+            else if(globals.playerId.equals("2")&&game.pTwo.score==4){
+                game.addScore("pTwo");
+            }
             ballVelocity.x*=-1;
         }else if (ballPosition.x + ballSize >= (((width - globals.getWidth)/2) + globals.getWidth+ 4*ballSize) && ballVelocity.x > 0 ) {
             setBallPos();
-            game.addScore("pOne");
+            if(globals.playerId.equals("1")){
+                game.addScore("pOne");
+            }
+            else if(globals.playerId.equals("2")&&game.pOne.score==4){
+                game.addScore("pOne");
+            }
             ballVelocity.x*=-1;
         }
         ballPosition.y += ballVelocity.y*deltaTime;
