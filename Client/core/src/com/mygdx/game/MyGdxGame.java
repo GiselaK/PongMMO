@@ -6,7 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
-public class MyGdxGame extends ApplicationAdapter {
+public class
+		MyGdxGame extends ApplicationAdapter {
 	private Network network;
 	public static Text text;
 	private Globals globals;
