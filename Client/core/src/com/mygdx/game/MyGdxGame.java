@@ -64,6 +64,7 @@ public class
 //				}
 				break;
 			case GAMEOVER:
+				game.stupidity=false;
 				firstTime=true;
 				setup=false;
 				Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -96,7 +97,7 @@ public class
 			case ERROR:
 				Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 				globals.batch.begin();
-				text.draw("You have reached an error", globals.width / 2 - 100, globals.height / 2);
+				text.draw("You're wifi disconnected.\n Please reconnect and restart the app", globals.width / 2 - 200, globals.height / 2);
 				if (globals.error != null) {
 					text.draw(globals.error, 0, 0);
 					System.out.println(globals.error);

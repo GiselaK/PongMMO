@@ -3,11 +3,15 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
+import java.util.Random;
+
 public class Menu {
     private Globals globals;
     private Page page;
+    private Text2 text2;
+    Random rand = new Random();
     enum Page {
-        Home, Play, Stats
+        Home, Play, Credits
     }
     enum Quadran {
         TL, TR, BL, BR, NULL
@@ -15,7 +19,11 @@ public class Menu {
     Menu (Globals globals) {
         this.globals = globals;
         this.page = Page.Home;
+        this.text2 = new Text2(globals);
     }
+
+
+
     private Quadran getInput() {
         if (Gdx.input.justTouched()) {
             if (Gdx.input.getY() < globals.height/2) {
@@ -44,16 +52,29 @@ public class Menu {
         globals.batch.begin();
         switch (page) {
             case Home:
-                MyGdxGame.text.draw("Play", globals.width/2-20, globals.height-200);
-                MyGdxGame.text.draw("Stats", globals.width/2-20, 200);
+                text2.font.getData().setScale(3, 3);
+                text2.draw("PONGIE", globals.width / 2 - 130, globals.height - 100, rand.nextInt(), rand.nextInt(), rand.nextInt() );
+                //MyGdxGame.text.font.setColor(1,1,1,1);
+
+
+                MyGdxGame.text.font.getData().setScale(1, 1);
+                MyGdxGame.text.draw("Play", globals.width/2-20, globals.height - 200);
+                MyGdxGame.text.draw("Credits", globals.width/2-40, 170);
+
+                MyGdxGame.text.draw("INSTRUCTIONS:", globals.width/2-400, 100);
+                MyGdxGame.text.draw("Tap the top half of the screen to move up", globals.width/2-400, 50);
+                MyGdxGame.text.draw("Tap the bottom half of the screen to move down", globals.width/2-400, 25);
                 break;
             case Play:
                 globals.gameState = Globals.GameState.WAITING;
                 break;
-            case Stats:
-                MyGdxGame.text.draw("Stats not yet Avaliable", globals.width/2-100, globals.height-200);
-                MyGdxGame.text.draw("Wins: ", globals.width/2-20, 200);
-                MyGdxGame.text.draw("Losses: ", globals.width/2-20, 175);
+            case Credits:
+                MyGdxGame.text.draw("Bryce Mao", globals.width/2-100, globals.height-200);
+                MyGdxGame.text.draw("Charlotte Deming", globals.width/2-160, globals.height-250);
+                MyGdxGame.text.draw("Elias Fox", globals.width/2-100, globals.height-300);
+                MyGdxGame.text.draw("Gisela Kottmeir", globals.width/2-145, globals.height-350);
+                MyGdxGame.text.draw("-TAP TO GO BACK-", globals.width/2-145, globals.height-500);
+
                 break;
         }
         globals.batch.end();
@@ -66,14 +87,14 @@ public class Menu {
                 if (input == Quadran.TL || input == Quadran.TR) {
                     page = Page.Play;
                 } else {
-                    page = Page.Stats;
+                    page = Page.Credits;
                 }
                 break;
             case Play:
                 globals.gameState = Globals.GameState.WAITING;
                 page = Page.Home;
                 break;
-            case Stats:
+            case Credits:
                 page = Page.Home;
                 break;
         }

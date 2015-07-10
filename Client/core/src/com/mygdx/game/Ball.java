@@ -33,6 +33,7 @@ public class Ball {
     public Music music = Gdx.audio.newMusic(Gdx.files.internal("song.mp3"));
 
     Ball (Globals globals, Game game) {
+
         batch = new SpriteBatch();
         ball = new Texture(Gdx.files.internal("ball.png"));
         sprite = new Sprite(ball);
@@ -149,18 +150,25 @@ public class Ball {
             if(globals.playerId.equals("1")){
                 game.addScore("pTwo");
             }
-            else if(globals.playerId.equals("2")&&game.pTwo.score==4){
-                game.addScore("pTwo");
-            }
+//            else if(globals.playerId.equals("2")&&game.pTwo.score==4&&game.stupidity==true){
+//                game.addScore("pTwo");
+//            }
+//            else if(globals.playerId.equals("2")&&game.pTwo.score==4){
+//                game.stupidity=true;
+//            }
             ballVelocity.x*=-1;
         }else if (ballPosition.x + ballSize >= (((width - globals.getWidth)/2) + globals.getWidth+ 4*ballSize) && ballVelocity.x > 0 ) {
             setBallPos();
             if(globals.playerId.equals("1")){
                 game.addScore("pOne");
+
             }
-            else if(globals.playerId.equals("2")&&game.pOne.score==4){
-                game.addScore("pOne");
-            }
+//            else if(globals.playerId.equals("2")&&game.pOne.score==4 &&game.stupidity==true){
+//                game.addScore("pOne");
+//            }
+//            else if (globals.playerId.equals("2")&&game.pTwo.score==4){
+//                game.stupidity=true;
+//            }
             ballVelocity.x*=-1;
         }
         ballPosition.y += ballVelocity.y*deltaTime;

@@ -8,7 +8,7 @@ public class Globals {
     public int width;
     public int height;
     public enum GameState {
-        STARTED, GAMEOVER, WAITING, pDisconnect, ERROR, MENU
+        STARTED, GAMEOVER, WAITING, pDisconnect,Credits, ERROR, MENU
     }
     public GameState gameState;
     public String playerId;

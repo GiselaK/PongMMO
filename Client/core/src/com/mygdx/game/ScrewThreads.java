@@ -76,7 +76,18 @@ public class ScrewThreads implements Runnable {
                         game.ball.ballVelocity.y = Float.parseFloat(globals.network.processJson(result, "vy"));
                         lastUpdateBall = Long.parseLong(globals.network.processJson(result, "timeStamp"));
                     }
-
+                    if(game.pOne.score==4||game.pTwo.score==4){
+                        if(Integer.parseInt(globals.network.processJson(result, "oneScore"))==0&&game.pOne.score>0||Integer.parseInt(globals.network.processJson(result, "twoScore"))==0&&game.pTwo.score>0){
+                            if(game.pOne.score>=game.pTwo.score){
+                                globals.winner="1";
+                                globals.gameState= Globals.GameState.GAMEOVER;
+                            }
+                            else {
+                                globals.winner="2";
+                                globals.gameState= Globals.GameState.GAMEOVER;
+                            }
+                        }
+                    }
                     if(globals.network.processJson(result,"oneScore")!=null &&Integer.parseInt(globals.network.processJson(result,"oneScore"))!=game.pOne.score){
 //                        System.out.println("Player 1:"+game.pOne.score);
                         game.pOne.score=Integer.parseInt(globals.network.processJson(result, "oneScore"));

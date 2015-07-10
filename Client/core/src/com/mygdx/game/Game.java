@@ -19,13 +19,18 @@ public class Game {
     public int winningScore;
     private OrthographicCamera camera;
     public Thread theTread;
+    public boolean stupidity;
 
     Random rand = new Random();
     public float r = rand.nextFloat();
     public float g = rand.nextFloat();
     public float b = rand.nextFloat();
+//    public float a = rand.nextFloat();
+//    public float d = rand.nextFloat();
+//    public float c = rand.nextFloat();
 
     Game(Globals globals) {
+        stupidity=false;
         this.globals = globals;
         pOne = new Player(globals);
         pTwo = new Player(globals);
@@ -92,18 +97,22 @@ public class Game {
         shapie.rect(((globals.width - globals.getWidth) / 2), (globals.height - globals.gameHeight) / 2, globals.getWidth, globals.gameHeight);
         shapie.setColor(1, 1, 1, 1);
         shapie.rect(ball.ballPosition.x, ball.ballPosition.y, ball.ballSize, ball.ballSize);
-        shapie.rect((((globals.width - globals.getWidth) / 2)) - paddleWidth, ((globals.height - globals.gameHeight) / 2) + pOne.playerPosition.y, paddleWidth, paddleHeight);
-        shapie.rect((((globals.width + globals.getWidth) / 2)), ((globals.height - globals.gameHeight) / 2)+ pTwo.playerPosition.y, paddleWidth, paddleHeight);
+        pOne.playerPosition.x=(((globals.width - globals.getWidth) / 2)) - paddleWidth;
+        pTwo.playerPosition.x=(((globals.width + globals.getWidth) / 2));
+        shapie.rect(pOne.playerPosition.x, ((globals.height - globals.gameHeight) / 2) + pOne.playerPosition.y, paddleWidth, paddleHeight);
+        shapie.rect(pTwo.playerPosition.x, ((globals.height - globals.gameHeight) / 2) + pTwo.playerPosition.y, paddleWidth, paddleHeight);
         shapie.end();
         globals.batch.begin();
-        MyGdxGame.text.draw("Player One Score: "+ pOne.score, 200, 200);
-        MyGdxGame.text.draw("Player Two Score: " + pTwo.score, 200, 175);
+        MyGdxGame.text.font.getData().setScale(2.5f, 2.5f);
+        MyGdxGame.text.draw("" + pOne.score, (globals.width/2)-60, globals.height-30);
+        MyGdxGame.text.draw("" + pTwo.score, (globals.width/2)+60, globals.height-30);
+        MyGdxGame.text.font.getData().setScale(1, 1);
         globals.batch.end();
     }
 
     private void resizeGame() {
         globals.width = Gdx.graphics.getWidth();
-        globals.height = Gdx.graphics.getHeight();
+        globals.height = Gdx. graphics.getHeight();
         ball.resizeGame();
     }
     private void resetGame(){

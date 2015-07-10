@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class Text {
-    private BitmapFont font;
+    public BitmapFont font;
     private Globals globals;
 
     Text(Globals globals) {
